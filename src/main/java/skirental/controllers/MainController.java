@@ -1,5 +1,7 @@
 package skirental.controllers;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,4 +35,13 @@ public class MainController {
 
         borderPane.setCenter(parent);
     }
+
+    public void closeApplication(ActionEvent actionEvent) {
+        Platform.exit();
+        System.exit(0);
+    }
+    public void info() {
+
+        }
+
 }
