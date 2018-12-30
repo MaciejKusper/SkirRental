@@ -3,18 +3,13 @@ package skirental.controllers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import skirental.utils.DialogsUtils;
 import skirental.utils.FxmlUtils;
-
-import java.io.IOException;
 import java.util.Optional;
 
 public class MainController {
-
 
 
     @FXML
