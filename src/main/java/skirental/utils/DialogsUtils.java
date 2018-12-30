@@ -1,4 +1,4 @@
-package skirental.dialogs;
+package skirental.utils;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

@@ -2,12 +2,11 @@ package skirental;
 
 
         import javafx.application.Application;
-        import javafx.fxml.FXMLLoader;
-        import javafx.scene.Scene;
-        import javafx.scene.layout.BorderPane;
-        import javafx.stage.Stage;
 
-        import java.util.ResourceBundle;
+        import javafx.scene.Scene;
+        import javafx.scene.layout.Pane;
+        import javafx.stage.Stage;
+        import skirental.utils.FxmlUtils;
 
 public class Main extends Application {
 
@@ -18,14 +17,12 @@ public class Main extends Application {
     }
 
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource(BORDER_PANE_MAIN_FXML));
-        ResourceBundle bundle = ResourceBundle.getBundle("bundle.messages");
-        loader.setResources(bundle);
-        BorderPane borderPane = loader.load();
+        Pane borderPane = FxmlUtils.fxmlLoader(BORDER_PANE_MAIN_FXML);
         Scene scene = new Scene(borderPane , 800 , 600);
         primaryStage.setScene(scene);
-        primaryStage.setTitle(bundle.getString("tittle.application"));
+        primaryStage.setTitle(FxmlUtils.getResourceBundle().getString("tittle.application"));
         primaryStage.show();
+
+
     }
 }

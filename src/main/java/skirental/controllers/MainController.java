@@ -7,12 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
-import skirental.dialogs.DialogsUtils;
+import skirental.utils.DialogsUtils;
+import skirental.utils.FxmlUtils;
 
 import java.io.IOException;
 import java.util.Optional;
-
-import static skirental.dialogs.DialogsUtils.exitDialog;
 
 public class MainController {
 
@@ -29,16 +28,8 @@ public class MainController {
     }
 
     public void setCenter(String fxmlPath){
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource(fxmlPath));
-        Parent parent = null;
-        try {
-            parent = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        borderPane.setCenter(parent);
+        borderPane.setCenter(FxmlUtils.fxmlLoader(fxmlPath));
     }
 
     public void closeApplication(ActionEvent actionEvent) {
