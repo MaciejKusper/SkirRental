@@ -14,3 +14,4 @@
       <ToggleButton mnemonicParsing="false" onAction="#openOrder" prefHeight="100.0" prefWidth="100.0" text="%button.order" toggleGroup="$toggleButtons" />
    </children>
 </HBox>
+
