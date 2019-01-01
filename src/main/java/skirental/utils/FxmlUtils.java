@@ -1,6 +1,7 @@
 package skirental.utils;
 
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
@@ -8,21 +9,22 @@ public class FxmlUtils {
 
 
     //Method to load fxml files
-    public static Pane fxmlLoader(String fxmlPath){
+    public static Pane fxmlLoader(String fxmlPath) {
         FXMLLoader loader = new FXMLLoader(FxmlUtils.class.getClass().getResource(fxmlPath));
         loader.setResources(getResourceBundle());
-        try{
+        try {
             return loader.load();
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
-           DialogsUtils.errorDialog(e.getMessage());
+            DialogsUtils.errorDialog(e.getMessage());
         }
         return null;
 
     }
+
     //Method to load resorceBundle
-    public static ResourceBundle getResourceBundle(){
+    public static ResourceBundle getResourceBundle() {
         return ResourceBundle.getBundle("bundle.messages");
     }
 }
