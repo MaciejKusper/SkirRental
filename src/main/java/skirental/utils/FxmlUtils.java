@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 public class FxmlUtils {
 
 
-    //Metod to load fxml files
+    //Method to load fxml files
     public static Pane fxmlLoader(String fxmlPath){
         FXMLLoader loader = new FXMLLoader(FxmlUtils.class.getClass().getResource(fxmlPath));
         loader.setResources(getResourceBundle());
@@ -16,12 +16,12 @@ public class FxmlUtils {
 
         }catch (Exception e){
 
-            e.printStackTrace();
+           DialogsUtils.errorDialog(e.getMessage());
         }
         return null;
 
     }
-    //Metod to load resorceBundle
+    //Method to load resorceBundle
     public static ResourceBundle getResourceBundle(){
         return ResourceBundle.getBundle("bundle.messages");
     }
