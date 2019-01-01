@@ -16,7 +16,7 @@ public class DatabaseManager {
 
         private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseManager.class);
 
-        private static final String JDBC_DRIVER_HD = "jdbc:h2:./libraryDB";
+        private static final String JDBC_DRIVER_HD = "jdbc:h2:./skirentalDB";
         private static final String USER = "admin";
         private static final String PASS = "admin";
 
@@ -24,7 +24,7 @@ public class DatabaseManager {
 
         public static void initDatabase(){
             createConnectionSource();
-            dropTable(); //zakomentuj, żeby nie kasować za każym razem tabel w bazie
+            dropTable(); //comment if dont wont to delete databes
             createTable();
             closeConnectionSource();
         }
