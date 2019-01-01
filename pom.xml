@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!-- Set java version for project , configure plugin to creat fatjar-->
 
     <groupId>SkiRental</groupId>
     <artifactId>SkiRental</artifactId>
@@ -29,7 +30,8 @@
                         </goals>
                         <configuration>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>skirental.Main</mainClass>
                                 </transformer>
                             </transformers>
@@ -39,6 +41,19 @@
             </plugin>
         </plugins>
     </build>
-
+    <dependencies>
+        <!-- orm lite and h2 database connection-->
+        <!-- https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-jdbc -->
+        <dependency>
+            <groupId>com.j256.ormlite</groupId>
+            <artifactId>ormlite-jdbc</artifactId>
+            <version>5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.193</version>
+        </dependency>
+    </dependencies>
 
 </project>
