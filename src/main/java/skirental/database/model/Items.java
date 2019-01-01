@@ -7,13 +7,15 @@ import java.util.Date;
 
 public class Items implements BaseModel {
 
+    public static final String ORDER_ID = "ORDER_ID";
+
     @DatabaseField(generatedId = true)
     private int id;
 
-    // @DatabaseField(columnName = AUTHOR_ID, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
-    // private Author author;
-    //@DatabaseField(columnName = CATEGORY_ID, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
-    //private Category category;
+    @DatabaseField(columnName = ORDER_ID, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
+    private Order order_id;
+    @DatabaseField(columnName = "CUSTOMER_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
+    private Customer customer_id;
     @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false)
     private String external_id;
 
@@ -119,5 +121,23 @@ public class Items implements BaseModel {
 
     public void setServiceDate(Date serviceDate) {
         this.serviceDate = serviceDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Items{" +
+                "id=" + id +
+                ", order_id=" + order_id +
+                ", customer_id=" + customer_id +
+                ", external_id='" + external_id + '\'' +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                ", size='" + size + '\'' +
+                ", addedDate=" + addedDate +
+                ", description='" + description + '\'' +
+                ", inStock=" + inStock +
+                ", condition=" + condition +
+                ", serviceDate=" + serviceDate +
+                '}';
     }
 }
