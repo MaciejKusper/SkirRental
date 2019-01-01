@@ -3,8 +3,11 @@ package skirental.database.model;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
+import com.j256.ormlite.table.DatabaseTable;
 
-public class Order {
+
+@DatabaseTable(tableName = "ORDERS")
+public class Order implements BaseModel {
 
     @DatabaseField(generatedId = true)
     private int id;

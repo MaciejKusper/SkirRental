@@ -1,10 +1,11 @@
 package skirental.database.model;
 
-
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
+@DatabaseTable(tableName = "ITEMS")
 public class Items implements BaseModel {
 
     public static final String ORDER_ID = "ORDER_ID";
