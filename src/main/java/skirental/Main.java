@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import skirental.database.dbUtils.DatabaseManager;
 import skirental.utils.FxmlUtils;
 
 public class Main extends Application {
@@ -22,7 +23,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle(FxmlUtils.getResourceBundle().getString("tittle.application"));
         primaryStage.show();
-
+        DatabaseManager.initDatabase();
 
     }
 }
