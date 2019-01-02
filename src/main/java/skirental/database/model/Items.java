@@ -7,6 +7,8 @@ import java.util.Date;
 
 @DatabaseTable(tableName = "ITEMS")
 public class Items implements BaseModel {
+    public Items() {
+    }
 
     public static final String ORDER_ID = "ORDER_ID";
 

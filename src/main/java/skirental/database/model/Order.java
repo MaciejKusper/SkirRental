@@ -9,6 +9,10 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "ORDERS")
 public class Order implements BaseModel {
 
+    public Order(){
+
+    }
+
     @DatabaseField(generatedId = true)
     private int id;
 

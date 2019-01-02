@@ -8,6 +8,9 @@ import java.util.Date;
 
 public class Customer {
 
+    public Customer() {
+    }
+
     @DatabaseField(generatedId = true)
     private int id;
 
