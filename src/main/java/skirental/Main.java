@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle(FxmlUtils.getResourceBundle().getString("tittle.application"));
         primaryStage.show();
-        DatabaseManager.initDatabase();
+        //DatabaseManager.initDatabase();
 
     }
 }

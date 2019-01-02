@@ -1,6 +1,7 @@
 package skirental.controllers;
 
 
+
 public class TopMenuController {
 
     public static final String MAIN_MAIN_FXML = "/fxml/MainMain.fxml";
@@ -23,4 +24,10 @@ public class TopMenuController {
     }
 
 
+    public void openCustomer(){
+
+    }
+
+    public void openItems() {
+    }
 }
