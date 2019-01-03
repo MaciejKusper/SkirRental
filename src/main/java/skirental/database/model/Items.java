@@ -15,9 +15,9 @@ public class Items implements BaseModel {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(columnName = ORDER_ID, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
+    @DatabaseField(columnName = ORDER_ID, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private Order order_id;
-    @DatabaseField(columnName = "CUSTOMER_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
+    @DatabaseField(columnName = "CUSTOMER_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private Customer customer_id;
     @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false)
     private String external_id;
@@ -31,8 +31,8 @@ public class Items implements BaseModel {
     @DatabaseField(columnName = "SIZE", canBeNull = false)
     private String size;
 
-    @DatabaseField(columnName = "ADDED_DATE")
-    private Date addedDate;
+    //@DatabaseField(columnName = "ADDED_DATE")
+   // private Date addedDate;
 
     @DatabaseField(columnName = "DESCRIPTION")
     private String description;
@@ -43,8 +43,8 @@ public class Items implements BaseModel {
     @DatabaseField(columnName = "CONDITION", width = 1)
     private int condition;
 
-    @DatabaseField(columnName = "SERVICE_DATE")
-    private Date serviceDate;
+    //@DatabaseField(columnName = "SERVICE_DATE")
+  //  private Date serviceDate;
 
     public int getId() {
         return id;
@@ -86,14 +86,14 @@ public class Items implements BaseModel {
         this.size = size;
     }
 
-    public Date getAddedDate() {
+    /*public Date getAddedDate() {
         return addedDate;
     }
 
     public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
     }
-
+*/
     public String getDescription() {
         return description;
     }
@@ -117,7 +117,7 @@ public class Items implements BaseModel {
     public void setCondition(int condition) {
         this.condition = condition;
     }
-
+/*
     public Date getServiceDate() {
         return serviceDate;
     }
@@ -125,7 +125,7 @@ public class Items implements BaseModel {
     public void setServiceDate(Date serviceDate) {
         this.serviceDate = serviceDate;
     }
-
+*/
     @Override
     public String toString() {
         return "Items{" +
@@ -136,11 +136,11 @@ public class Items implements BaseModel {
                 ", type='" + type + '\'' +
                 ", price=" + price +
                 ", size='" + size + '\'' +
-                ", addedDate=" + addedDate +
+              //  ", addedDate=" + addedDate +
                 ", description='" + description + '\'' +
                 ", inStock=" + inStock +
                 ", condition=" + condition +
-                ", serviceDate=" + serviceDate +
+              //  ", serviceDate=" + serviceDate +
                 '}';
     }
 }

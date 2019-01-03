@@ -24,11 +24,26 @@ public class CustomerController {
     private CustomerModel customerModel;
     @FXML
     public void initialize(){
+
         this.customerModel = new CustomerModel();
+
+        initBinding();
+    }
+
+    private void initBinding() {
+        newCustomerButton.disableProperty().bind(nameText.textProperty().isEmpty());
+        newCustomerButton.disableProperty().bind( surnameText.textProperty().isEmpty());
+        newCustomerButton.disableProperty().bind( cardText.textProperty().isEmpty());
     }
 
     public void addCustomer() throws ApplicationException {
 
         customerModel.saveCustomerToDB(nameText.getText(),surnameText.getText(),addresText.getText(),cardText.getText());
+        nameText.clear();
+        surnameText.clear();
+        addresText.clear();
+        cardText.clear();
+
+
     }
 }

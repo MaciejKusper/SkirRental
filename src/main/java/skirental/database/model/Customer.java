@@ -14,7 +14,7 @@ public class Customer implements BaseModel{
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false)
+    @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false, unique = true)
     private String external_id;
 
     @DatabaseField(columnName = "TYPE")
