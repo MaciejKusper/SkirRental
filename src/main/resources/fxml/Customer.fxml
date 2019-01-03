@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skirental.controllers.CustomerController">
    <children>
       <HBox>
@@ -20,7 +19,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <TextField>
+            <TextField fx:id="nameText">
                <opaqueInsets>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </opaqueInsets>
@@ -40,7 +39,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <TextField>
+            <TextField fx:id="surnameText">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -60,7 +59,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <TextField prefHeight="25.0" prefWidth="150.0">
+            <TextField fx:id="addresText" prefHeight="25.0" prefWidth="150.0">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -80,7 +79,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <TextField>
+            <TextField fx:id="cardText">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -92,7 +91,7 @@
       </HBox>
       <HBox alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#addCustomer" text="%customer.button.addCustomer">
+            <Button fx:id="newCustomerButton" mnemonicParsing="false" onAction="#addCustomer" text="%customer.button.addCustomer">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
