@@ -6,6 +6,7 @@ public class TopMenuController {
 
     public static final String MAIN_MAIN_FXML = "/fxml/MainMain.fxml";
     public static final String MAIN_ORDER_FXML = "/fxml/MainOrder.fxml";
+    public static final String CUSTOMER_FXML = "/fxml/Customer.fxml";
 
     private MainController mainController;
 
@@ -25,7 +26,7 @@ public class TopMenuController {
 
 
     public void openCustomer(){
-
+        mainController.setCenter(CUSTOMER_FXML);
     }
 
     public void openItems() {

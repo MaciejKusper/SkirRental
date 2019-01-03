@@ -6,7 +6,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 
 import java.util.Date;
 
-public class Customer {
+public class Customer implements BaseModel{
 
     public Customer() {
     }
@@ -29,14 +29,14 @@ public class Customer {
     @DatabaseField(columnName = "ADDERS")
     private String addres;
 
-    @DatabaseField(columnName = "ADDED_DATE")
-    private Date addedDate;
+   // @DatabaseField(columnName = "ADDED_DATE")
+    //private Date addedDate;
 
-    @DatabaseField(columnName = "COMMENTS")
-    private String comments;
+    //@DatabaseField(columnName = "COMMENTS")
+    //private String comments;
 
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Items> item;
+    //@ForeignCollectionField(eager = true)
+    //private ForeignCollection<Items> item;
 
     public String getType() {
         return type;
@@ -70,7 +70,7 @@ public class Customer {
         this.addres = addres;
     }
 
-    public Date getAddedDate() {
+    /*public Date getAddedDate() {
         return addedDate;
     }
 
@@ -93,7 +93,7 @@ public class Customer {
     public void setItem(ForeignCollection<Items> item) {
         this.item = item;
     }
-
+    */
     public int getId() {
         return id;
     }
@@ -119,9 +119,9 @@ public class Customer {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", addres='" + addres + '\'' +
-                ", addedDate=" + addedDate +
-                ", comments='" + comments + '\'' +
-                ", item=" + item +
+               // ", addedDate=" + addedDate +
+                //", comments='" + comments + '\'' +
+                //", item=" + item +
                 '}';
     }
 }
