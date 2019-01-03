@@ -31,9 +31,7 @@ public class CustomerController {
     }
 
     private void initBinding() {
-        newCustomerButton.disableProperty().bind(nameText.textProperty().isEmpty());
-        newCustomerButton.disableProperty().bind( surnameText.textProperty().isEmpty());
-        newCustomerButton.disableProperty().bind( cardText.textProperty().isEmpty());
+        newCustomerButton.disableProperty().bind(nameText.textProperty().isEmpty().or(surnameText.textProperty().isEmpty()).or(cardText.textProperty().isEmpty()));
     }
 
     public void addCustomer() throws ApplicationException {

@@ -31,20 +31,18 @@ public class Items implements BaseModel {
     @DatabaseField(columnName = "SIZE", canBeNull = false)
     private String size;
 
-    //@DatabaseField(columnName = "ADDED_DATE")
-   // private Date addedDate;
+    @DatabaseField(columnName = "ADDED_DATE")
+    private Date addedDate;
+
+    @DatabaseField(columnName = "SERVICE_DATE")
+    private Date serviceDate;
 
     @DatabaseField(columnName = "DESCRIPTION")
     private String description;
 
-    @DatabaseField(columnName = "INSTOCK", defaultValue = "1")
-    private Boolean inStock;
-
     @DatabaseField(columnName = "CONDITION", width = 1)
     private int condition;
 
-    //@DatabaseField(columnName = "SERVICE_DATE")
-  //  private Date serviceDate;
 
     public int getId() {
         return id;
@@ -86,14 +84,14 @@ public class Items implements BaseModel {
         this.size = size;
     }
 
-    /*public Date getAddedDate() {
+   public Date getAddedDate() {
         return addedDate;
     }
 
     public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
     }
-*/
+
     public String getDescription() {
         return description;
     }
@@ -102,13 +100,14 @@ public class Items implements BaseModel {
         this.description = description;
     }
 
-    public Boolean getInStock() {
-        return inStock;
+    public Date getServiceDate() {
+        return serviceDate;
     }
 
-    public void setInStock(Boolean inStock) {
-        this.inStock = inStock;
+    public void setServiceDate(Date serviceDate) {
+        this.serviceDate = serviceDate;
     }
+
 
     public int getCondition() {
         return condition;
@@ -117,30 +116,6 @@ public class Items implements BaseModel {
     public void setCondition(int condition) {
         this.condition = condition;
     }
-/*
-    public Date getServiceDate() {
-        return serviceDate;
-    }
 
-    public void setServiceDate(Date serviceDate) {
-        this.serviceDate = serviceDate;
-    }
-*/
-    @Override
-    public String toString() {
-        return "Items{" +
-                "id=" + id +
-                ", order_id=" + order_id +
-                ", customer_id=" + customer_id +
-                ", external_id='" + external_id + '\'' +
-                ", type='" + type + '\'' +
-                ", price=" + price +
-                ", size='" + size + '\'' +
-              //  ", addedDate=" + addedDate +
-                ", description='" + description + '\'' +
-                ", inStock=" + inStock +
-                ", condition=" + condition +
-              //  ", serviceDate=" + serviceDate +
-                '}';
-    }
+
 }
