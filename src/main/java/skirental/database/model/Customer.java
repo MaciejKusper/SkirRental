@@ -11,7 +11,7 @@ public class Customer implements BaseModel{
     public Customer() {
     }
 
-    @DatabaseField(generatedId = true)
+    @DatabaseField(generatedId = true, unique = true)
     private int id;
 
     @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false, unique = true)
@@ -29,8 +29,8 @@ public class Customer implements BaseModel{
     @DatabaseField(columnName = "ADDERS")
     private String addres;
 
-   // @DatabaseField(columnName = "ADDED_DATE")
-    //private Date addedDate;
+    @DatabaseField(columnName = "ADDED_DATE")
+    private Date addedDate;
 
     //@DatabaseField(columnName = "COMMENTS")
     //private String comments;
@@ -70,14 +70,14 @@ public class Customer implements BaseModel{
         this.addres = addres;
     }
 
-    /*public Date getAddedDate() {
+    public Date getAddedDate() {
         return addedDate;
     }
 
     public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
     }
-
+    /*
     public String getComments() {
         return comments;
     }

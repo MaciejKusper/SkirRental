@@ -1,8 +1,7 @@
 package skirental.models;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+
+import java.time.LocalDate;
 
 public class CustomerFX {
 
@@ -11,6 +10,6 @@ public class CustomerFX {
     private StringProperty name = new SimpleStringProperty();
     private StringProperty surname = new SimpleStringProperty();
     private StringProperty sddres = new SimpleStringProperty();
-
+    private SimpleObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<>();
 
 }

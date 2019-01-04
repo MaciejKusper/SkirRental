@@ -3,6 +3,7 @@ package skirental.database.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+
 import java.util.Date;
 
 @DatabaseTable(tableName = "ITEMS")
@@ -12,36 +13,36 @@ public class Items implements BaseModel {
 
     public static final String ORDER_ID = "ORDER_ID";
 
-    @DatabaseField(generatedId = true)
+    @DatabaseField(generatedId = true, unique =true)
     private int id;
 
     @DatabaseField(columnName = ORDER_ID, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private Order order_id;
     @DatabaseField(columnName = "CUSTOMER_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private Customer customer_id;
-    @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false)
+    @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false, unique = true)
     private String external_id;
 
-    @DatabaseField(columnName = "TYPE", canBeNull = false)
+    @DatabaseField(columnName = "TYPE")
     private String type;
 
-    @DatabaseField(columnName = "PRICE", canBeNull = false)
+    @DatabaseField(columnName = "PRICE" , canBeNull = false)
     private Double price;
 
-    @DatabaseField(columnName = "SIZE", canBeNull = false)
+    @DatabaseField(columnName = "SIZE")
     private String size;
 
     @DatabaseField(columnName = "ADDED_DATE")
     private Date addedDate;
 
-    @DatabaseField(columnName = "SERVICE_DATE")
+    @DatabaseField(columnName = "SERVICE_DATE", canBeNull = false)
     private Date serviceDate;
 
     @DatabaseField(columnName = "DESCRIPTION")
     private String description;
 
     @DatabaseField(columnName = "CONDITION", width = 1)
-    private int condition;
+    private Double condition;
 
 
     public int getId() {
@@ -68,13 +69,6 @@ public class Items implements BaseModel {
         this.type = type;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
 
     public String getSize() {
         return size;
@@ -84,7 +78,7 @@ public class Items implements BaseModel {
         this.size = size;
     }
 
-   public Date getAddedDate() {
+    public Date getAddedDate() {
         return addedDate;
     }
 
@@ -108,14 +102,22 @@ public class Items implements BaseModel {
         this.serviceDate = serviceDate;
     }
 
-
-    public int getCondition() {
+    public Double getCondition() {
         return condition;
     }
 
-    public void setCondition(int condition) {
-        this.condition = condition;
+    public Double getPrice() {
+        return price;
     }
 
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
+    public void setCondition(Double condition) {
+        this.condition = condition;
+    }
 }
+
+
+
