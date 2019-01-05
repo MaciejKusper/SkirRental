@@ -20,4 +20,6 @@ public class CustomerModel {
         customerDao.creatOrUpdate(customer);
         DatabaseManager.closeConnectionSource();
     }
+
+
 }
