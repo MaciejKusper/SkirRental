@@ -48,6 +48,14 @@ public class CommonDao {
             LOGGER.warn(e.getCause().getMessage());
         }
     }
+    public <T extends BaseModel, I> void deleteByID(Class<T> cls , Integer id) throws ApplicationException {
+        try {
+            Dao<T, I> dao = getDao(cls);
+            dao.deleteById((I) id);
+        } catch (SQLException e) {
+            LOGGER.warn(e.getCause().getMessage());
+        }
+    }
 
 
     public <T extends BaseModel, I> List<T> queryForAll(Class<T> cls) throws ApplicationException {

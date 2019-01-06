@@ -1,5 +1,6 @@
 package skirental.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -56,4 +57,12 @@ public class OrderController {
 
     }
 
+    public void deleteCustomer() throws ApplicationException {
+        DialogsUtils.deleteCustomerDialog();
+        initialize();
+    }
+
+    public void selectedOnComboBox(ActionEvent actionEvent) {
+        this.customerModel.setCustomer(this.selectCustomerComboBox.getSelectionModel().getSelectedItem());
+    }
 }

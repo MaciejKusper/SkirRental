@@ -15,6 +15,7 @@ public class DialogsUtils {
 
     static ResourceBundle bundle = FxmlUtils.getResourceBundle();
     private static final String CUSTOMER_FXML = "/fxml/Customer.fxml";
+    private static final String DELETE_CUSTOMER_FXML = "/fxml/DeleteCustomer.fxml";
 
     public static void aboutDialog(){
         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -25,13 +26,20 @@ public class DialogsUtils {
     }
 
     public static void addCustomerDialog(){
-        Alert addAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert addAlert = new Alert(Alert.AlertType.INFORMATION);
         addAlert.setTitle(bundle.getString("addCustomerDialog.title"));
         addAlert.setHeaderText(bundle.getString("addCustomerDialog.header"));
         Pane pane = FxmlUtils.fxmlLoader(CUSTOMER_FXML);
         addAlert.getDialogPane().setContent(pane);
         addAlert.showAndWait();
-
+    }
+    public static void deleteCustomerDialog(){
+        Alert addAlert = new Alert(Alert.AlertType.WARNING);
+        addAlert.setTitle(bundle.getString("deleteCustomerDialog.title"));
+        addAlert.setHeaderText(bundle.getString("deleteCustomerDialog.header"));
+        Pane pane = FxmlUtils.fxmlLoader(DELETE_CUSTOMER_FXML);
+        addAlert.getDialogPane().setContent(pane);
+        addAlert.showAndWait();
     }
 
     public static Optional<ButtonType> exitDialog(){

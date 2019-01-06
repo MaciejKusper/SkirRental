@@ -30,6 +30,12 @@ public class CustomerModel {
         DatabaseManager.closeConnectionSource();
         takeCustomerFromDB();// to refresh ObservableList
     }
+    public void deleteCustomerFromDB() throws ApplicationException {
+        CustomerDao customerDao = new CustomerDao(DatabaseManager.getConnectionSource());
+        customerDao.deleteByID(Customer.class, customer.getValue().getId());
+        DatabaseManager.closeConnectionSource();
+        takeCustomerFromDB();// to refresh ObservableList
+    };
 
     public void takeCustomerFromDB() throws ApplicationException {
         CustomerDao customerDao = new CustomerDao(DatabaseManager.getConnectionSource());
