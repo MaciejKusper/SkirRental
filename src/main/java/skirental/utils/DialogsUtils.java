@@ -2,7 +2,11 @@ package skirental.utils;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
+import skirental.controllers.OrderController;
+import skirental.models.CustomerModel;
 
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -10,6 +14,7 @@ import java.util.ResourceBundle;
 public class DialogsUtils {
 
     static ResourceBundle bundle = FxmlUtils.getResourceBundle();
+    private static final String CUSTOMER_FXML = "/fxml/Customer.fxml";
 
     public static void aboutDialog(){
         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -19,6 +24,15 @@ public class DialogsUtils {
         infoAlert.showAndWait();
     }
 
+    public static void addCustomerDialog(){
+        Alert addAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        addAlert.setTitle(bundle.getString("addCustomerDialog.title"));
+        addAlert.setHeaderText(bundle.getString("addCustomerDialog.header"));
+        Pane pane = FxmlUtils.fxmlLoader(CUSTOMER_FXML);
+        addAlert.getDialogPane().setContent(pane);
+        addAlert.showAndWait();
+
+    }
 
     public static Optional<ButtonType> exitDialog(){
         Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION);

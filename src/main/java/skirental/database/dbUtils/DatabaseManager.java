@@ -24,7 +24,7 @@ public class DatabaseManager {
 
         public static void initDatabase(){
             createConnectionSource();
-            dropTable(); //comment if dont wont to delete databes
+            //dropTable(); //comment if dont wont to delete databes
             createTable();
             closeConnectionSource();
         }
