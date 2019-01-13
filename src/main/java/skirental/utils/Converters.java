@@ -10,14 +10,14 @@ public class Converters {
 
     public static Double convertToDouble(String str) {
         // Convert String to Double
-        try{
+        try {
             Scanner st = new Scanner(str);
             while (!st.hasNextDouble()) {
                 st.next();
             }
             double value = st.nextDouble();
-            return value;}
-        catch (Exception e){
+            return value;
+        } catch (Exception e) {
             DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorData.price"));
         }
 
