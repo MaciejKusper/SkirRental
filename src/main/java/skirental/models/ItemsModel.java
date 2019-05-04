@@ -33,13 +33,26 @@ public class ItemsModel {
     public void takeItemFromDB(Integer Id) throws ApplicationException {
         ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
         Items items = itemsDao.findById(Items.class, Id);
+
         //this.itemsFXObservableList.clear();
-            ItemsFX itemsFX = Converters.convertToItemsFX(items);
-            this.itemsFXObservableList.add(itemsFX);
-            DatabaseManager.closeConnectionSource();
+        ItemsFX itemsFX = Converters.convertToItemsFX(items);
+        this.itemsFXObservableList.add(itemsFX);
+        DatabaseManager.closeConnectionSource();
 
     }
 
+    public void takeRFIDFromDB(String rfid) throws ApplicationException {
+        ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
+        List<Items> itemsList  = itemsDao.queryForEq(Items.class,"external_id", rfid);
+
+        //this.itemsFXObservableList.clear();
+        itemsList.forEach(items -> {
+            ItemsFX itemsFX = Converters.convertToItemsFX(items);
+            this.itemsFXObservableList.add(itemsFX);
+        });
+        DatabaseManager.closeConnectionSource();
+
+    }
 
 
     public void saveItemToDB(String external_id, String type , Double price, String size, Date serviceDate, String description, Double condition) throws ApplicationException {

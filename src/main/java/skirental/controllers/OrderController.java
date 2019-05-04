@@ -22,6 +22,9 @@ public class OrderController {
     private Button addNewCustomerButton;
 
     @FXML
+    private Button insertItem;
+
+    @FXML
     private TextField addItemsTextField;
 
     @FXML
@@ -71,6 +74,7 @@ public class OrderController {
     @FXML
     void addItemsListener() {
 
+
     }
 
     @FXML
@@ -84,6 +88,7 @@ public class OrderController {
 
     }
 
+
     @FXML
     void saveOrder() {
 
@@ -96,5 +101,9 @@ public class OrderController {
 
     public void selectedOnComboBox(ActionEvent actionEvent) {
         this.customerModel.setCustomer(this.selectCustomerComboBox.getSelectionModel().getSelectedItem());
+    }
+    @FXML
+    public void addNewItem(ActionEvent actionEvent) throws ApplicationException {
+            this.itemsModel.takeRFIDFromDB(addItemsTextField.getText());
     }
 }

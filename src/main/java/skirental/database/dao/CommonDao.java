@@ -67,6 +67,16 @@ public class CommonDao {
 
     }
 
+    public <T extends BaseModel, I> List<T> queryForEq(Class<T> cls, String fieldName, Object value) throws ApplicationException {
+        try {
+            Dao<T, I> dao = getDao(cls);
+            return dao.queryForEq(fieldName, value);
+        } catch (SQLException e) {
+            LOGGER.warn(e.getCause().getMessage());
+        }
+        return null;
+
+    }
 
     public <T extends BaseModel, I> List<T> queryForAll(Class<T> cls) throws ApplicationException {
         try {
