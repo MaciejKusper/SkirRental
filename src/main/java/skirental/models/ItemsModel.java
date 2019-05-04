@@ -21,15 +21,7 @@ public class ItemsModel {
         List<Items> itemsList = itemsDao.queryForAll(Items.class);
         this.itemsFXObservableList.clear();
         itemsList.forEach(items -> {
-            ItemsFX itemsFX = new ItemsFX();
-            itemsFX.setId(items.getId());
-            itemsFX.setAddedDate(Converters.convertToLocalDate(items.getAddedDate()));
-            itemsFX.setDescription(items.getDescription());
-            itemsFX.setExternal_id(items.getExternal_id());
-            itemsFX.setSize(items.getSize());
-            itemsFX.setType(items.getType());
-            itemsFX.setPrice(items.getPrice());
-            itemsFX.setServiceDate(Converters.convertToLocalDate(items.getServiceDate()));
+            ItemsFX itemsFX = Converters.convertToItemsFX(items);
             this.itemsFXObservableList.add(itemsFX);
         });
 
@@ -38,15 +30,17 @@ public class ItemsModel {
 
     }
 
-    public ObservableList<ItemsFX> getItemsFXObservableList() {
-        return itemsFXObservableList;
+    public void takeItemFromDB(Integer Id) throws ApplicationException {
+        ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
+        Items items = itemsDao.findById(Items.class, Id);
+        //this.itemsFXObservableList.clear();
+            ItemsFX itemsFX = Converters.convertToItemsFX(items);
+            this.itemsFXObservableList.add(itemsFX);
+            DatabaseManager.closeConnectionSource();
+
     }
 
-    public void setItemsFXObservableList(ObservableList<ItemsFX> itemsFXObservableList) {
-        this.itemsFXObservableList = itemsFXObservableList;
-    }
 
-    private ObservableList<ItemsFX> itemsFXObservableList = FXCollections.observableArrayList();
 
     public void saveItemToDB(String external_id, String type , Double price, String size, Date serviceDate, String description, Double condition) throws ApplicationException {
         ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
@@ -62,5 +56,15 @@ public class ItemsModel {
         itemsDao.creatOrUpdate(items);
         DatabaseManager.closeConnectionSource();
         this.takeItemsFromDB();
+    }
+
+    private ObservableList<ItemsFX> itemsFXObservableList = FXCollections.observableArrayList();
+
+    public ObservableList<ItemsFX> getItemsFXObservableList() {
+        return itemsFXObservableList;
+    }
+
+    public void setItemsFXObservableList(ObservableList<ItemsFX> itemsFXObservableList) {
+        this.itemsFXObservableList = itemsFXObservableList;
     }
 }

@@ -55,6 +55,16 @@ public class CommonDao {
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
         }
+}
+    public <T extends BaseModel, I> T findById(Class<T> cls, Integer id) throws ApplicationException {
+        try {
+            Dao<T, I> dao = getDao(cls);
+            return dao.queryForId((I) id);
+        } catch (SQLException e) {
+            LOGGER.warn(e.getCause().getMessage());
+        }
+        return null;
+
     }
 
 

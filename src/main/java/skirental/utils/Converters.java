@@ -1,5 +1,8 @@
 package skirental.utils;
 
+import skirental.database.model.Items;
+import skirental.models.ItemsFX;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -45,5 +48,18 @@ public class Converters {
           DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorData.date"));
       }
       return null;
+}
+
+public static ItemsFX convertToItemsFX (Items items){
+    ItemsFX itemsFX = new ItemsFX();
+    itemsFX.setId(items.getId());
+    itemsFX.setAddedDate(Converters.convertToLocalDate(items.getAddedDate()));
+    itemsFX.setDescription(items.getDescription());
+    itemsFX.setExternal_id(items.getExternal_id());
+    itemsFX.setSize(items.getSize());
+    itemsFX.setType(items.getType());
+    itemsFX.setPrice(items.getPrice());
+    itemsFX.setServiceDate(Converters.convertToLocalDate(items.getServiceDate()));
+    return itemsFX;
 }
 }
