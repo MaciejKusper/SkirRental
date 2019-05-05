@@ -17,7 +17,7 @@ public class Order implements BaseModel {
     private int id;
 
 
-    @ForeignCollectionField(eager = true)
+    @ForeignCollectionField(columnName = "ITEM_ID", eager = true)
     private ForeignCollection<Items> item;
 
     public int getId() {
