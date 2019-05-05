@@ -10,6 +10,8 @@ import skirental.models.ItemsFX;
 import skirental.models.ItemsModel;
 import skirental.utils.DialogsUtils;
 
+import java.util.List;
+
 public class OrderController {
 
     @FXML
@@ -29,6 +31,10 @@ public class OrderController {
 
     @FXML
     private Button saveOrderButton;
+
+    @FXML
+    private Label orderSum;
+
 
     @FXML
     private TableView<ItemsFX> orderTableView;
@@ -69,6 +75,9 @@ public class OrderController {
 
 
 
+
+
+
     }
 
     @FXML
@@ -85,8 +94,14 @@ public class OrderController {
 
     @FXML
     void newOrder() {
+        Double sum = new Double(0);
+        List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
+                for(Integer i= 0 ;i < list.size() ; i++) {
+                sum += list.get(i).getPrice();
+                }
 
-    }
+     orderSum.setText(""+sum);
+}
 
 
     @FXML
