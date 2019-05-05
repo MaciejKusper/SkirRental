@@ -1,7 +1,9 @@
 package skirental.utils;
 
 import skirental.database.model.Items;
+import skirental.database.model.Order;
 import skirental.models.ItemsFX;
+import skirental.models.OrderFX;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -53,6 +55,7 @@ public class Converters {
 public static ItemsFX convertToItemsFX (Items items){
     ItemsFX itemsFX = new ItemsFX();
     itemsFX.setId(items.getId());
+    //itemsFX.setOrder_id(convertToOrderFX(items.getOrder_id()));
     itemsFX.setAddedDate(Converters.convertToLocalDate(items.getAddedDate()));
     itemsFX.setDescription(items.getDescription());
     itemsFX.setExternal_id(items.getExternal_id());
@@ -61,5 +64,12 @@ public static ItemsFX convertToItemsFX (Items items){
     itemsFX.setPrice(items.getPrice());
     itemsFX.setServiceDate(Converters.convertToLocalDate(items.getServiceDate()));
     return itemsFX;
+}
+
+public static OrderFX convertToOrderFX(Order order){
+    OrderFX orderFX = new OrderFX();
+    orderFX.setId(order.getId());
+    orderFX.setName(order.getName());
+    return  orderFX;
 }
 }

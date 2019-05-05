@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
-import skirental.models.CustomerFX;
-import skirental.models.CustomerModel;
-import skirental.models.ItemsFX;
-import skirental.models.ItemsModel;
+import skirental.models.*;
 import skirental.utils.DialogsUtils;
 
 import java.util.List;
@@ -57,6 +54,7 @@ public class OrderController {
 
     private CustomerModel customerModel;
     private ItemsModel itemsModel;
+    private OrderModel orderModel;
 
     @FXML
     private  void initialize() throws ApplicationException {
@@ -93,20 +91,23 @@ public class OrderController {
 }
 
     @FXML
-    void newOrder() {
-        Double sum = new Double(0);
-        List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
-                for(Integer i= 0 ;i < list.size() ; i++) {
-                sum += list.get(i).getPrice();
-                }
+    void newOrder() throws ApplicationException {
+        this.orderModel = new OrderModel();
+        orderModel.saveOrderToDatabase("nazwa");
 
-     orderSum.setText(""+sum);
+
 }
 
 
     @FXML
     void saveOrder() {
+        Double sum = new Double(0.0);
+        List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
+        for(Integer i= 0 ;i < list.size() ; i++) {
+            sum += list.get(i).getPrice();
+        }
 
+        orderSum.setText(""+sum);
     }
 
     public void deleteCustomer() throws ApplicationException {

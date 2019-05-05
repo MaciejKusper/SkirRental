@@ -29,6 +29,14 @@ public class Items implements BaseModel {
     @DatabaseField(columnName = "PRICE" , canBeNull = false)
     private Double price;
 
+    public Order getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(Order order_id) {
+        this.order_id = order_id;
+    }
+
     @DatabaseField(columnName = "SIZE")
     private String size;
 
