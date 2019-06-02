@@ -46,7 +46,7 @@ public class CustomerModel {
             this.customerFXObservableList.add(customerFX);
         });
         DatabaseManager.closeConnectionSource();
-    }
+}
 
 
     public ObservableList<CustomerFX> getCustomerFXObservableList() {
