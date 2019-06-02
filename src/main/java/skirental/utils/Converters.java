@@ -55,7 +55,7 @@ public class Converters {
 public static ItemsFX convertToItemsFX (Items items){
     ItemsFX itemsFX = new ItemsFX();
     itemsFX.setId(items.getId());
-    //itemsFX.setOrder_id(convertToOrderFX(items.getOrder_id()));
+    //itemsFX.setOrder_id(convertToOrderFX(items.getOrder()));
     itemsFX.setAddedDate(Converters.convertToLocalDate(items.getAddedDate()));
     itemsFX.setDescription(items.getDescription());
     itemsFX.setExternal_id(items.getExternal_id());
@@ -66,10 +66,17 @@ public static ItemsFX convertToItemsFX (Items items){
     return itemsFX;
 }
 
+
+
 public static OrderFX convertToOrderFX(Order order){
     OrderFX orderFX = new OrderFX();
     orderFX.setId(order.getId());
-    orderFX.setName(order.getName());
     return  orderFX;
+}
+
+public static Order convertToOrder(OrderFX orderFX){
+        Order order = new Order();
+        order.setId(orderFX.getId());
+        return order;
 }
 }

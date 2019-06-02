@@ -18,11 +18,7 @@ public class Order implements BaseModel {
 
 
 
-    @DatabaseField(columnName = "NAME")
-    private String name;
-
-
-    @ForeignCollectionField(columnName = "ITEM_ID", eager = true)
+    @ForeignCollectionField()
     private ForeignCollection<Items> item;
 
     public int getId() {
@@ -31,15 +27,6 @@ public class Order implements BaseModel {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public ForeignCollection<Items> getItem() {

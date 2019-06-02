@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
+import skirental.database.model.Items;
 import skirental.models.*;
 import skirental.utils.DialogsUtils;
 
@@ -61,8 +62,10 @@ public class OrderController {
 
         this.customerModel = new CustomerModel();
         this.itemsModel = new ItemsModel();
+        this.orderModel = new OrderModel();
         this.itemsModel.takeItemsFromDB();
         this.customerModel.takeCustomerFromDB();
+        this.orderModel.takeOrderFromDatabase();
         this.selectCustomerComboBox.setItems(this.customerModel.getCustomerFXObservableList());
         this.orderTableView.setItems(this.itemsModel.getItemsFXObservableList());
         this.rfidTableColumn.setCellValueFactory(cellData-> cellData.getValue().external_idProperty());
@@ -93,14 +96,14 @@ public class OrderController {
     @FXML
     void newOrder() throws ApplicationException {
         this.orderModel = new OrderModel();
-        orderModel.saveOrderToDatabase("nazwa");
+        orderModel.saveOrderToDatabase();
 
 
 }
 
 
     @FXML
-    void saveOrder() {
+    void saveOrder() throws ApplicationException {
         Double sum = new Double(0.0);
         List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
         for(Integer i= 0 ;i < list.size() ; i++) {
@@ -108,6 +111,10 @@ public class OrderController {
         }
 
         orderSum.setText(""+sum);
+        orderModel.takeOrderFromDatabase();
+        System.out.println(this.orderModel.orderFXObjectProperty.toString());
+
+
     }
 
     public void deleteCustomer() throws ApplicationException {

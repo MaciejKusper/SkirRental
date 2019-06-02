@@ -10,7 +10,7 @@ public class ItemsFX {
     private IntegerProperty id = new SimpleIntegerProperty();
 
 
-  /*  public OrderFX getOrder_id() {
+    public OrderFX getOrder_id() {
         return order_id.get();
     }
 
@@ -21,8 +21,8 @@ public class ItemsFX {
     public void setOrder_id(OrderFX order_id) {
         this.order_id.set(order_id);
     }
-*/
-   // private ObjectProperty<OrderFX> order_id  = new SimpleObjectProperty<>();
+
+    private ObjectProperty<OrderFX> order_id  = new SimpleObjectProperty<>();
     private StringProperty external_id = new SimpleStringProperty();
     private StringProperty type = new SimpleStringProperty();
     private DoubleProperty price = new SimpleDoubleProperty();

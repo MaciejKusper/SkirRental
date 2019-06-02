@@ -17,7 +17,7 @@ public class Items implements BaseModel {
     private int id;
 
     @DatabaseField(columnName = ORDER_ID, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
-    private Order order_id;
+    private Order order;
     @DatabaseField(columnName = "CUSTOMER_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private Customer customer_id;
     @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false, unique = true)
@@ -29,12 +29,12 @@ public class Items implements BaseModel {
     @DatabaseField(columnName = "PRICE" , canBeNull = false)
     private Double price;
 
-    public Order getOrder_id() {
-        return order_id;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrder_id(Order order_id) {
-        this.order_id = order_id;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @DatabaseField(columnName = "SIZE")
