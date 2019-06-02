@@ -19,7 +19,7 @@ public class Items implements BaseModel {
     @DatabaseField(columnName = ORDER_ID, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private Order order;
     @DatabaseField(columnName = "CUSTOMER_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
-    private Customer customer_id;
+    private Customer customer;
     @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false, unique = true)
     private String external_id;
 
@@ -77,6 +77,13 @@ public class Items implements BaseModel {
         this.type = type;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public String getSize() {
         return size;

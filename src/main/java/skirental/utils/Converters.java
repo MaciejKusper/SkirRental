@@ -1,7 +1,9 @@
 package skirental.utils;
 
+import skirental.database.model.Customer;
 import skirental.database.model.Items;
 import skirental.database.model.Order;
+import skirental.models.CustomerFX;
 import skirental.models.ItemsFX;
 import skirental.models.OrderFX;
 
@@ -65,7 +67,7 @@ public static ItemsFX convertToItemsFX (Items items){
     itemsFX.setServiceDate(Converters.convertToLocalDate(items.getServiceDate()));
     return itemsFX;
 }
-public static Items converToItems (ItemsFX itemsFX){
+public static Items convertToItems(ItemsFX itemsFX){
         Items items = new Items();
         items.setId(itemsFX.getId());
     items.setAddedDate(Converters.convertToDate(itemsFX.getAddedDate()));
@@ -78,6 +80,31 @@ public static Items converToItems (ItemsFX itemsFX){
     return items;
 }
 
+public static CustomerFX ConvertToCustomerFX(Customer customer){
+
+    CustomerFX customerFX = new CustomerFX();
+    customerFX.setId(customer.getId());
+    customerFX.setName(customer.getName());
+    customerFX.setSurname(customer.getSurname());
+    customerFX.setAddres(customer.getAddres());
+    customerFX.setAddedDate(Converters.convertToLocalDate(customer.getAddedDate()));
+    customerFX.setExternal_id(customer.getExternal_id());
+    return customerFX;
+
+}
+
+    public static Customer convertToCustomer(CustomerFX customerFX){
+
+        Customer customer = new Customer();
+        customer.setId(customerFX.getId());
+        customer.setName(customerFX.getName());
+        customer.setSurname(customerFX.getSurname());
+        customer.setAddres(customerFX.getAddres());
+        customer.setAddedDate(Converters.convertToDate(customerFX.getAddedDate()));
+        customer.setExternal_id(customerFX.getExternal_id());
+        return customer;
+
+    }
 
 public static OrderFX convertToOrderFX(Order order){
     OrderFX orderFX = new OrderFX();

@@ -74,12 +74,13 @@ public class ItemsModel {
         this.takeItemsFromDB();
     }
 
-    public  void orderItems(ObservableList<ItemsFX> itemsFXObservableList , ObjectProperty<OrderFX> orderFXObjectProperty ){
+    public  void orderItems(ObservableList<ItemsFX> itemsFXObservableList , ObjectProperty<OrderFX> orderFXObjectProperty, ObjectProperty<CustomerFX> customerFXObjectProperty){
         ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
 
         itemsFXObservableList.forEach(itemsFX->{
-                Items items=  Converters.converToItems(itemsFX);
+                Items items=  Converters.convertToItems(itemsFX);
                 items.setOrder(Converters.convertToOrder(orderFXObjectProperty.get()));
+                items.setCustomer(Converters.convertToCustomer(customerFXObjectProperty.get()));
                     try {
                         itemsDao.creatOrUpdate(items);
                     } catch (ApplicationException e) {

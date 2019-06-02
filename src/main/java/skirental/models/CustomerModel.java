@@ -42,13 +42,7 @@ public class CustomerModel {
         List<Customer> customers = customerDao.queryForAll(Customer.class);
         this.customerFXObservableList.clear();
         customers.forEach(e->{
-            CustomerFX customerFX = new CustomerFX();
-            customerFX.setId(e.getId());
-            customerFX.setName(e.getName());
-            customerFX.setSurname(e.getSurname());
-            customerFX.setAddres(e.getAddres());
-            customerFX.setAddedDate(Converters.convertToLocalDate(e.getAddedDate()));
-            customerFX.setExternal_id(e.getExternal_id());
+           CustomerFX customerFX = Converters.ConvertToCustomerFX(e);
             this.customerFXObservableList.add(customerFX);
         });
         DatabaseManager.closeConnectionSource();
