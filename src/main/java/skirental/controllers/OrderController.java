@@ -6,8 +6,11 @@ import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.database.model.Items;
 import skirental.models.*;
+import skirental.utils.Converters;
 import skirental.utils.DialogsUtils;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class OrderController {
@@ -113,7 +116,10 @@ public class OrderController {
         orderSum.setText(""+sum);
         orderModel.takeOrderFromDatabase();
         System.out.println(this.orderModel.orderFXObjectProperty.toString());
+        Date date= new Date(2018,2,11);
 
+        this.itemsModel.orderItems(this.itemsModel.getItemsFXObservableList(),this.orderModel.orderFXObjectProperty);
+        //this.itemsModel.saveItemToDB("ss11", Converters.convertToOrder(this.orderModel.orderFXObjectProperty.get()),"cos", 2.2,"s017",date,null,null );
 
     }
 

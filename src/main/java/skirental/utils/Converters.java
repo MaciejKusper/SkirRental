@@ -65,7 +65,18 @@ public static ItemsFX convertToItemsFX (Items items){
     itemsFX.setServiceDate(Converters.convertToLocalDate(items.getServiceDate()));
     return itemsFX;
 }
-
+public static Items converToItems (ItemsFX itemsFX){
+        Items items = new Items();
+        items.setId(itemsFX.getId());
+    items.setAddedDate(Converters.convertToDate(itemsFX.getAddedDate()));
+    items.setDescription(itemsFX.getDescription());
+    items.setExternal_id(itemsFX.getExternal_id());
+    items.setSize(itemsFX.getSize());
+    items.setType(itemsFX.getType());
+    items.setPrice(itemsFX.getPrice());
+    items.setServiceDate(Converters.convertToDate(itemsFX.getServiceDate()));
+    return items;
+}
 
 
 public static OrderFX convertToOrderFX(Order order){

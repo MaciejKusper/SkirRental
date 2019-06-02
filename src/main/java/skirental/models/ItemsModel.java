@@ -2,12 +2,14 @@ package skirental.models;
 
 
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.database.dao.ItemsDao;
 import skirental.database.dbUtils.DatabaseManager;
 import skirental.database.model.Items;
+import skirental.database.model.Order;
 import skirental.utils.Converters;
 
 import java.util.Date;
@@ -55,10 +57,11 @@ public class ItemsModel {
     }
 
 
-    public void saveItemToDB(String external_id, String type , Double price, String size, Date serviceDate, String description, Double condition) throws ApplicationException {
+    public void saveItemToDB(String external_id, Order order, String type , Double price, String size, Date serviceDate, String description, Double condition) throws ApplicationException {
         ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
         Items items = new Items();
         items.setExternal_id(external_id);
+        items.setOrder(order);
         items.setType(type);
         items.setPrice(price);
         items.setSize(size);
@@ -69,6 +72,25 @@ public class ItemsModel {
         itemsDao.creatOrUpdate(items);
         DatabaseManager.closeConnectionSource();
         this.takeItemsFromDB();
+    }
+
+    public  void orderItems(ObservableList<ItemsFX> itemsFXObservableList , ObjectProperty<OrderFX> orderFXObjectProperty ){
+        ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
+
+        itemsFXObservableList.forEach(itemsFX->{
+                Items items=  Converters.converToItems(itemsFX);
+                items.setOrder(Converters.convertToOrder(orderFXObjectProperty.get()));
+                    try {
+                        itemsDao.creatOrUpdate(items);
+                    } catch (ApplicationException e) {
+                        e.printStackTrace();
+                    }
+                    finally {
+                        DatabaseManager.closeConnectionSource();
+                    }
+                }
+                );
+
     }
 
     private ObservableList<ItemsFX> itemsFXObservableList = FXCollections.observableArrayList();
