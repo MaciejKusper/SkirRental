@@ -1,8 +1,5 @@
 package skirental.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
@@ -69,7 +66,7 @@ public class OrderController {
         this.orderModel = new OrderModel();
        //this.itemsModel.takeItemsFromDB();
         this.customerModel.takeCustomerFromDB();
-       this.orderModel.takeLastOrderFromDatabase();
+       //this.orderModel.takeLastOrderFromDatabase();
        orderNumber.setText("" +this.orderModel.orderIdProperty.getValue());
         initBinding();
         this.selectCustomerComboBox.setItems(this.customerModel.getCustomerFXObservableList());
@@ -83,20 +80,16 @@ public class OrderController {
     }
 
     @FXML
-    void addItemsListener() throws ApplicationException {
-        addItemsTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable,
-                                String oldValue, String newValue) {
+    void addItemsListener() {
+        addItemsTextField.textProperty().addListener((observable, oldValue, newValue) -> {
 
-                System.out.println(" Text Changed to  " + newValue + ")\n");
-                if(newValue.length()==10){
-                    try {
-                        itemsModel.takeRFIDFromDB(addItemsTextField.getText());
-                        addItemsTextField.clear();
-                    } catch (ApplicationException e) {
-                        e.printStackTrace();
-                    }
+            System.out.println(" Text Changed to  " + newValue + ")\n");
+            if(newValue.length()==10){
+                try {
+                    itemsModel.takeRFIDFromDB(addItemsTextField.getText());
+                    addItemsTextField.clear();
+                } catch (ApplicationException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -132,11 +125,11 @@ public class OrderController {
         initialize();
     }
 
-    public void selectedOnComboBox(ActionEvent actionEvent) {
+    public void selectedOnComboBox() {
         this.customerModel.setCustomer(this.selectCustomerComboBox.getSelectionModel().getSelectedItem());
     }
     @FXML
-    public void addNewItem(ActionEvent actionEvent) throws ApplicationException {
+    public void addNewItem() throws ApplicationException {
             this.itemsModel.takeRFIDFromDB(addItemsTextField.getText());
     }
     private void initBinding() {
@@ -144,10 +137,10 @@ public class OrderController {
     }
 
     public void claculateButton() {
-        Double sum = new Double(0.0);
+        double sum = 0.0;
         List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
-        for(Integer i= 0 ;i < list.size() ; i++) {
-            sum += list.get(i).getPrice();
+        for (ItemsFX itemsFX : list) {
+            sum += itemsFX.getPrice();
         }
         orderSum.setText(""+sum);
     }

@@ -6,12 +6,6 @@ import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.models.ItemsModel;
 import skirental.utils.Converters;
-import skirental.utils.DialogsUtils;
-
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.Scanner;
 
 public class ItemsController {
 
