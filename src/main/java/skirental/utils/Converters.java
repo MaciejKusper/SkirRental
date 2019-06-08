@@ -34,23 +34,25 @@ public class Converters {
 
     public static Date convertToDate(LocalDate localDate) {
         //Convert from LocalDate to Date
-        try {
-            return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        if (localDate!=null) {
+            try {
+                return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            } catch (Exception e) {
+                DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorData.date"));
+            }
         }
-        catch (Exception e){
-            DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorData.date"));
-        }
-
         return null;
     }
 
     //Convert from Date to LicalDate
     public static LocalDate convertToLocalDate(Date date){
-      try{  return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    }
-      catch (Exception e){
-          DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorData.date"));
-      }
+        if (date!=null) {
+            try {
+                return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            } catch (Exception e) {
+                DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorData.date"));
+            }
+        }
       return null;
 }
 
@@ -109,12 +111,17 @@ public static CustomerFX ConvertToCustomerFX(Customer customer){
 public static OrderFX convertToOrderFX(Order order){
     OrderFX orderFX = new OrderFX();
     orderFX.setId(order.getId());
+    orderFX.setOrderDate(Converters.convertToLocalDate(order.getOrderDate()));
+    orderFX.setReturnDate(Converters.convertToLocalDate(order.getReturnDate()));
+
     return  orderFX;
 }
 
 public static Order convertToOrder(OrderFX orderFX){
         Order order = new Order();
         order.setId(orderFX.getId());
+        order.setOrderDate(Converters.convertToDate(orderFX.getOrderDate()));
+        order.setReturnDate(Converters.convertToDate(orderFX.getReturnDate()));
         return order;
 }
 }

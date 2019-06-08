@@ -9,7 +9,7 @@ import org.omg.CORBA.portable.ApplicationException;
 import skirental.models.*;
 import skirental.utils.DialogsUtils;
 
-import java.util.Date;
+
 import java.util.List;
 
 public class OrderController {
@@ -67,10 +67,10 @@ public class OrderController {
         this.customerModel = new CustomerModel();
         this.itemsModel = new ItemsModel();
         this.orderModel = new OrderModel();
-        this.itemsModel.takeItemsFromDB();
+       //this.itemsModel.takeItemsFromDB();
         this.customerModel.takeCustomerFromDB();
-        this.orderModel.takeLastOrderFromDatabase();
-        orderNumber.setText("" +this.orderModel.orderIdProperty.getValue());
+       this.orderModel.takeLastOrderFromDatabase();
+       orderNumber.setText("" +this.orderModel.orderIdProperty.getValue());
         initBinding();
         this.selectCustomerComboBox.setItems(this.customerModel.getCustomerFXObservableList());
         this.orderTableView.setItems(this.itemsModel.getItemsFXObservableList());

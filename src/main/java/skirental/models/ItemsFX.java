@@ -8,24 +8,7 @@ public class ItemsFX {
 
 
     private IntegerProperty id = new SimpleIntegerProperty();
-
-
-    public OrderFX getOrder_id() {
-        return order_id.get();
-    }
-
-    public ObjectProperty<OrderFX> order_idProperty() {
-        return order_id;
-    }
-
-    public void setOrder_id(OrderFX order_id) {
-        this.order_id.set(order_id);
-    }
-
     private ObjectProperty<OrderFX> order_id  = new SimpleObjectProperty<>();
-
-
-
     private ObjectProperty<OrderFX> customer_id  = new SimpleObjectProperty<>();
     private StringProperty external_id = new SimpleStringProperty();
     private StringProperty type = new SimpleStringProperty();
@@ -142,7 +125,17 @@ public class ItemsFX {
     public void setDescription(String description) {
         this.description.set(description);
     }
+    public OrderFX getOrder_id() {
+        return order_id.get();
+    }
 
+    public ObjectProperty<OrderFX> order_idProperty() {
+        return order_id;
+    }
+
+    public void setOrder_id(OrderFX order_id) {
+        this.order_id.set(order_id);
+    }
 
 
 }

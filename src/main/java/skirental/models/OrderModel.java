@@ -10,6 +10,7 @@ import skirental.database.dbUtils.DatabaseManager;
 import skirental.database.model.Order;
 import skirental.utils.Converters;
 
+import java.util.Date;
 import java.util.List;
 
 public class OrderModel {
@@ -17,13 +18,13 @@ public class OrderModel {
 
 
     public ObjectProperty<OrderFX>  orderFXObjectProperty = new SimpleObjectProperty<>();
-
     public IntegerProperty orderIdProperty = new SimpleIntegerProperty();
 
 
 public void saveOrderToDatabase() throws ApplicationException {
     OrdersDao orderDao = new OrdersDao(DatabaseManager.getConnectionSource());
    Order order = new Order();
+   order.setOrderDate(new Date(System.currentTimeMillis()));
    orderDao.creatOrUpdate(order);
    DatabaseManager.closeConnectionSource();
 }

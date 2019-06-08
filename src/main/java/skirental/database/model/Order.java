@@ -5,6 +5,8 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Date;
+
 
 @DatabaseTable(tableName = "ORDERS")
 public class Order implements BaseModel {
@@ -16,6 +18,11 @@ public class Order implements BaseModel {
     @DatabaseField(generatedId = true)
     private int id;
 
+    @DatabaseField(columnName = "ORDER_DATE")
+    private Date orderDate;
+
+    @DatabaseField(columnName = "RETURN_DATE")
+    private Date returnDate;
 
 
     @ForeignCollectionField()
@@ -35,6 +42,22 @@ public class Order implements BaseModel {
 
     public void setItem(ForeignCollection<Items> item) {
         this.item = item;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 
     @Override
