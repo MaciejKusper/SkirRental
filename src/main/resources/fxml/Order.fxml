@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skirental.controllers.OrderController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skirental.controllers.OrderController">
    <children>
       <HBox prefHeight="71.0" prefWidth="600.0">
          <children>
@@ -24,6 +24,16 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
+            <Label prefHeight="21.0" prefWidth="150.0" text="%order.button.orderNumber">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="100.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="orderNumber" text="-">
+               <HBox.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
@@ -38,11 +48,6 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </ComboBox>
-            <TextField fx:id="searchTextFiels">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </TextField>
             <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteCustomer" text="%button.delete">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -67,7 +72,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="insertItem" mnemonicParsing="false" onAction="#addNewItem" text="Button">
+            <Button fx:id="insertItem" mnemonicParsing="false" onAction="#addNewItem" text="%button.add">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -77,27 +82,32 @@
       <TableView fx:id="orderTableView" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="rfidTableColumn" prefWidth="75.0" text="%items.label.external_id" />
-          <TableColumn fx:id="typeTabelColumn" prefWidth="75.0" text="%items.label.type" />
-            <TableColumn fx:id="priceTableColumn" prefWidth="75.0" text="%items.label.price" />
+          <TableColumn fx:id="typeTabelColumn" prefWidth="100.0" text="%items.label.type" />
+            <TableColumn fx:id="priceTableColumn" prefWidth="50.0" text="%items.label.price" />
             <TableColumn fx:id="sizeTableColumn" prefWidth="75.0" text="%items.label.size" />
-            <TableColumn fx:id="descriptionTableColumn" prefWidth="75.0" text="%items.label.description" />
+            <TableColumn fx:id="descriptionTableColumn" minWidth="75.0" prefWidth="250.0" text="%items.label.description" />
         </columns>
       </TableView>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label prefWidth="150.0" text="%order.label.sum">
+            <Label prefHeight="21.0" prefWidth="100.0" text="%order.label.sum">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="orderSum" layoutX="20.0" layoutY="20.0" prefHeight="8.0" prefWidth="150.0" text="yext">
+            <Label fx:id="orderSum" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="74.0" text="0.00">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>
             </Label>
+            <Button fx:id="calculate" mnemonicParsing="false" onAction="#claculateButton" text="%button.calculate">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button fx:id="saveOrderButton" mnemonicParsing="false" onAction="#saveOrder" text="%order.button.save">
                <HBox.margin>

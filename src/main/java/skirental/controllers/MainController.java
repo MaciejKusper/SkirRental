@@ -23,7 +23,6 @@ public class MainController {
     }
 
     public void setCenter(String fxmlPath){
-
         borderPane.setCenter(FxmlUtils.fxmlLoader(fxmlPath));
     }
 

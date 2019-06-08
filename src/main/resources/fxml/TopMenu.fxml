@@ -4,15 +4,15 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skirental.controllers.TopMenuController">
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skirental.controllers.TopMenuController">
    <children>
-      <ToggleButton mnemonicParsing="false" onAction="#openMain" prefHeight="100.0" prefWidth="100.0" text="%button.main">
+      <ToggleButton mnemonicParsing="false" onAction="#openMain" prefHeight="100.0" prefWidth="120.0" selected="true" text="%button.main">
          <toggleGroup>
             <ToggleGroup fx:id="toggleButtons" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton mnemonicParsing="false" onAction="#openOrder" prefHeight="100.0" prefWidth="100.0" text="%button.order" toggleGroup="$toggleButtons" />
-      <ToggleButton mnemonicParsing="false" onAction="#openCustomer" prefHeight="100.0" prefWidth="100.0" text="%button.customers" toggleGroup="$toggleButtons" />
-      <ToggleButton mnemonicParsing="false" onAction="#openItems" prefHeight="100.0" prefWidth="100.0" text="%button.items" toggleGroup="$toggleButtons" />
+      <ToggleButton mnemonicParsing="false" onAction="#openOrder" prefHeight="100.0" prefWidth="120.0" text="%button.order" toggleGroup="$toggleButtons" />
+      <ToggleButton mnemonicParsing="false" onAction="#openCustomer" prefHeight="100.0" prefWidth="120.0" text="%button.customers" toggleGroup="$toggleButtons" />
+      <ToggleButton mnemonicParsing="false" onAction="#openItems" prefHeight="100.0" prefWidth="120.0" text="%button.items" toggleGroup="$toggleButtons" />
    </children>
 </HBox>

@@ -24,9 +24,7 @@ public class OrderFX {
     }
     @Override
     public String toString() {
-        return "OrderFX{" +
-                "id=" + id +
-                '}';
+        return (""+id);
     }
 
 }

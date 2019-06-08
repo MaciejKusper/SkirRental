@@ -1,15 +1,14 @@
 package skirental.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
-import skirental.database.model.Items;
 import skirental.models.*;
-import skirental.utils.Converters;
 import skirental.utils.DialogsUtils;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +35,8 @@ public class OrderController {
     @FXML
     private Label orderSum;
 
+    @FXML
+    private Label orderNumber;
 
     @FXML
     private TableView<ItemsFX> orderTableView;
@@ -68,7 +69,9 @@ public class OrderController {
         this.orderModel = new OrderModel();
         this.itemsModel.takeItemsFromDB();
         this.customerModel.takeCustomerFromDB();
-        this.orderModel.takeOrderFromDatabase();
+        this.orderModel.takeLastOrderFromDatabase();
+        orderNumber.setText("" +this.orderModel.orderIdProperty.getValue());
+        initBinding();
         this.selectCustomerComboBox.setItems(this.customerModel.getCustomerFXObservableList());
         this.orderTableView.setItems(this.itemsModel.getItemsFXObservableList());
         this.rfidTableColumn.setCellValueFactory(cellData-> cellData.getValue().external_idProperty());
@@ -77,17 +80,26 @@ public class OrderController {
        this.sizeTableColumn.setCellValueFactory(cellData-> cellData.getValue().sizeProperty());
        this.descriptionTableColumn.setCellValueFactory(cellData-> cellData.getValue().descriptionProperty());
 
-
-
-
-
-
     }
 
     @FXML
-    void addItemsListener() {
+    void addItemsListener() throws ApplicationException {
+        addItemsTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable,
+                                String oldValue, String newValue) {
 
-
+                System.out.println(" Text Changed to  " + newValue + ")\n");
+                if(newValue.length()==10){
+                    try {
+                        itemsModel.takeRFIDFromDB(addItemsTextField.getText());
+                        addItemsTextField.clear();
+                    } catch (ApplicationException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     @FXML
@@ -100,24 +112,16 @@ public class OrderController {
     void newOrder() throws ApplicationException {
         this.orderModel = new OrderModel();
         orderModel.saveOrderToDatabase();
-
-
+        orderModel.takeLastOrderFromDatabase();
+        orderNumber.setText("" +this.orderModel.orderIdProperty.getValue());
+        //this.itemsModel.setItemsFXObservableList(null);
 }
-
-
     @FXML
     void saveOrder() throws ApplicationException {
-        Double sum = new Double(0.0);
-        List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
-        for(Integer i= 0 ;i < list.size() ; i++) {
-            sum += list.get(i).getPrice();
-        }
 
-        orderSum.setText(""+sum);
-        orderModel.takeOrderFromDatabase();
+        orderModel.takeLastOrderFromDatabase();
         System.out.println(this.orderModel.orderFXObjectProperty.toString());
-        Date date= new Date(2018,2,11);
-
+        //Date date= new Date(2018,2,11);
         this.itemsModel.orderItems(this.itemsModel.getItemsFXObservableList(),this.orderModel.orderFXObjectProperty,this.customerModel.customerProperty());
         //this.itemsModel.saveItemToDB("ss11", Converters.convertToOrder(this.orderModel.orderFXObjectProperty.get()),"cos", 2.2,"s017",date,null,null );
 
@@ -134,5 +138,17 @@ public class OrderController {
     @FXML
     public void addNewItem(ActionEvent actionEvent) throws ApplicationException {
             this.itemsModel.takeRFIDFromDB(addItemsTextField.getText());
+    }
+    private void initBinding() {
+        saveOrderButton.disableProperty().bind(selectCustomerComboBox.valueProperty().isNull());
+    }
+
+    public void claculateButton() {
+        Double sum = new Double(0.0);
+        List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
+        for(Integer i= 0 ;i < list.size() ; i++) {
+            sum += list.get(i).getPrice();
+        }
+        orderSum.setText(""+sum);
     }
 }
