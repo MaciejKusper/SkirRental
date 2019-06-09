@@ -95,7 +95,7 @@
                   <Insets top="10.0" />
                </HBox.margin>
             </Label>
-            <Button fx:id="calculate" mnemonicParsing="false" onAction="#claculateButton" text="%button.calculate">
+            <Button fx:id="calculate" mnemonicParsing="false" onAction="#calculateButton" text="%button.calculate">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>

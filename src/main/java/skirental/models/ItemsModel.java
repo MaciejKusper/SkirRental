@@ -2,7 +2,10 @@ package skirental.models;
 
 
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.omg.CORBA.portable.ApplicationException;
@@ -55,7 +58,20 @@ public class ItemsModel {
         DatabaseManager.closeConnectionSource();
 
     }
+    public void takeByOrderIdFromDB(int order_id) throws ApplicationException {
+        ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
+        List<Items> itemsList  = itemsDao.queryForEq(Items.class,"order_id", order_id);
 
+        //this.itemsFXObservableList.clear();
+        itemsList.forEach(items -> {
+            ItemsFX itemsFX = Converters.convertToItemsFX(items);
+            this.itemsFXObservableList.add(itemsFX);
+            this.customerId.setValue(items.getCustomer().getId());
+            //System.out.println(customerId);
+        });
+        DatabaseManager.closeConnectionSource();
+
+    }
 
     public void saveItemToDB(String external_id, Order order, String type , Double price, String size, Date serviceDate, String description, Double condition) throws ApplicationException {
         ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
@@ -102,5 +118,18 @@ public class ItemsModel {
 
     public void setItemsFXObservableList(ObservableList<ItemsFX> itemsFXObservableList) {
         this.itemsFXObservableList = itemsFXObservableList;
+    }
+    private IntegerProperty customerId = new SimpleIntegerProperty();
+
+    public int getCustomerId() {
+        return customerId.get();
+    }
+
+    public IntegerProperty customerIdProperty() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId.set(customerId);
     }
 }

@@ -1,6 +1,7 @@
 package skirental.controllers;
 
 
+import javafx.event.ActionEvent;
 
 public class TopMenuController {
 
@@ -9,7 +10,7 @@ public class TopMenuController {
     private static final String CUSTOMER_FXML = "/fxml/Customer.fxml";
     private static final String ITEMS_FXML ="/fxml/Items.fxml" ;
     private static final String ORDER_FXML ="/fxml/Order.fxml" ;
-
+    private static final String RETURN_FXML ="/fxml/Return.fxml" ;
 
 
     private MainController mainController;
@@ -19,22 +20,22 @@ public class TopMenuController {
     }
 
     public void openMain() {
-        System.out.println("open Main/n");
         mainController.setCenter(MAIN_MAIN_FXML);
     }
 
     public void openOrder() {
-        System.out.println("open Order/n");
         mainController.setCenter(ORDER_FXML);
     }
-
 
     public void openCustomer(){
         mainController.setCenter(CUSTOMER_FXML);
     }
 
     public void openItems() {
-
         mainController.setCenter(ITEMS_FXML);
+    }
+
+    public void openReturn(ActionEvent actionEvent) {
+        mainController.setCenter(RETURN_FXML);
     }
 }

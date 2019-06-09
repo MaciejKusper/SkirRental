@@ -18,6 +18,8 @@ public class CustomerModel {
     private ObservableList<CustomerFX> customerFXObservableList = FXCollections.observableArrayList();
     private ObjectProperty<CustomerFX> customer = new SimpleObjectProperty<>();
 
+    private ObjectProperty<CustomerFX> customerStr = new SimpleObjectProperty<>();
+
     public void saveCustomerToDB (String name, String surname, String addres, String external_id) throws ApplicationException {
         CustomerDao customerDao = new CustomerDao(DatabaseManager.getConnectionSource());
         Customer customer = new Customer();
@@ -47,6 +49,13 @@ public class CustomerModel {
         });
         DatabaseManager.closeConnectionSource();
 }
+    public void takeCustomerByID(int id) throws ApplicationException {
+        CustomerDao customerDao = new CustomerDao(DatabaseManager.getConnectionSource());
+        Customer customer = customerDao.findById(Customer.class, id);
+        CustomerFX customerFX = Converters.ConvertToCustomerFX(customer);
+        this.customerStr.set(customerFX);
+        DatabaseManager.closeConnectionSource();
+    }
 
 
     public ObservableList<CustomerFX> getCustomerFXObservableList() {
@@ -67,6 +76,17 @@ public class CustomerModel {
 
     public void setCustomer(CustomerFX customer) {
         this.customer.set(customer);
+    }
+    public CustomerFX getCustomerStr() {
+        return customerStr.get();
+    }
+
+    public ObjectProperty<CustomerFX> customerStrProperty() {
+        return customerStr;
+    }
+
+    public void setCustomerStr(CustomerFX customerStr) {
+        this.customerStr.set(customerStr);
     }
 
     @Override

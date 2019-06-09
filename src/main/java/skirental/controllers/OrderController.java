@@ -136,7 +136,7 @@ public class OrderController {
         saveOrderButton.disableProperty().bind(selectCustomerComboBox.valueProperty().isNull());
     }
 
-    public void claculateButton() {
+    public void calculateButton() {
         double sum = 0.0;
         List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
         for (ItemsFX itemsFX : list) {

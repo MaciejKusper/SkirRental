@@ -19,6 +19,8 @@ public class OrderModel {
 
     public ObjectProperty<OrderFX>  orderFXObjectProperty = new SimpleObjectProperty<>();
     public IntegerProperty orderIdProperty = new SimpleIntegerProperty();
+    public ObjectProperty<OrderFX>  returnOrderFXObjectProperty = new SimpleObjectProperty<>();
+    public IntegerProperty returnOrderIdProperty = new SimpleIntegerProperty();
 
 
 public void saveOrderToDatabase() throws ApplicationException {
@@ -38,6 +40,15 @@ public void takeLastOrderFromDatabase() throws ApplicationException{
     this.orderFXObjectProperty.set(orderFX);
     DatabaseManager.closeConnectionSource();
 }
+
+    public void takeOrderByID(int id) throws ApplicationException {
+        OrdersDao orderDao = new OrdersDao(DatabaseManager.getConnectionSource());
+        Order order = orderDao.findById(Order.class, id);
+        OrderFX orderFX = Converters.convertToOrderFX(order);
+        returnOrderIdProperty.setValue(order.getId());
+        returnOrderFXObjectProperty.set(orderFX);
+        DatabaseManager.closeConnectionSource();
+    }
 
     public OrderFX getOrderFXObjectProperty() {
         return orderFXObjectProperty.get();

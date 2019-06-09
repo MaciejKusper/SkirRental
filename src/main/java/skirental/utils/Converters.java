@@ -32,6 +32,22 @@ public class Converters {
 
     }
 
+    public static Integer convertToInteger(String str) {
+        // Convert String to integer
+
+            try
+            {
+                int i = Integer.parseInt(str.trim());
+                return i;
+            }
+            catch (NumberFormatException nfe)
+            {
+                DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorInteger"));
+            }
+            return null;
+        }
+
+
     public static Date convertToDate(LocalDate localDate) {
         //Convert from LocalDate to Date
         if (localDate!=null) {
