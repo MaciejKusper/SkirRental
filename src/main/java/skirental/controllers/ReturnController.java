@@ -111,7 +111,7 @@ public class ReturnController {
 
     @FXML
     void saveOrder() {
-
+        itemsModel.returnItems(itemsModel.getItemsFXObservableList());
     }
 
     @FXML
