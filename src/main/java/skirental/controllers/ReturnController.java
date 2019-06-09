@@ -13,6 +13,9 @@ import skirental.models.ItemsModel;
 import skirental.models.OrderModel;
 import skirental.utils.Converters;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class ReturnController {
@@ -55,7 +58,7 @@ public class ReturnController {
     private TableColumn<ItemsFX, String> descriptionTableColumn;
 
     @FXML
-    private Label nuberHouerLable;
+    private Label nuberHourLable;
 
     @FXML
     private Label orderSum;
@@ -69,6 +72,7 @@ public class ReturnController {
     private CustomerModel customerModel;
     private ItemsModel itemsModel;
     private OrderModel orderModel;
+    private long duration;
 
     @FXML
     private  void initialize() throws ApplicationException {
@@ -96,12 +100,11 @@ public class ReturnController {
     @FXML
     void calculateButton() {
         double sum = 0.0;
-        double hour = 1;
         List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
         for (ItemsFX itemsFX : list) {
             sum += itemsFX.getPrice();
         }
-        sum = sum*hour;
+        sum = sum*duration;
         orderSum.setText(""+sum);
     }
 
@@ -116,12 +119,20 @@ public class ReturnController {
 
         this.orderModel.takeOrderByID(Converters.convertToInteger(takeOrder.getText()));
         orderNumber.setText(""+orderModel.returnOrderIdProperty.get());
+
         //orderNumber.setText(""+Integer.parseInt(takeOrder.getText()));
         itemsModel.takeByOrderIdFromDB(orderModel.returnOrderIdProperty.get());
         customerModel.takeCustomerByID(itemsModel.getCustomerId());
         if (customerModel.getCustomerStr()!=null) {
             customerLabel.setText(customerModel.getCustomerStr().getName() + customerModel.getCustomerStr().getSurname());
         }
+        if (orderModel.returnOrderFXObjectProperty.get().getOrderDate()!=null) {
+            LocalDate orderDate = orderModel.returnOrderFXObjectProperty.get().getOrderDate();
+            LocalDate today = LocalDate.now();
+            duration =Duration.between(orderDate.atStartOfDay(),today.atStartOfDay()).toHours();
+            nuberHourLable.setText(""+duration);
+        }
+
     }
 
 }
