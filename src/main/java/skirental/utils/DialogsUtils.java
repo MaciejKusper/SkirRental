@@ -33,6 +33,22 @@ public class DialogsUtils {
         addAlert.getDialogPane().setContent(pane);
         addAlert.showAndWait();
     }
+
+    public static void addOrderDialog(String s){
+        Alert addAlert = new Alert(Alert.AlertType.INFORMATION);
+        addAlert.setTitle(bundle.getString("orderDialog.success"));
+        addAlert.setHeaderText(bundle.getString("saveOrderDialog.title"));
+        addAlert.setContentText(bundle.getString("saveOrderDialog.header")+s);
+        addAlert.showAndWait();
+    }
+
+    public static void returnOrderDialog(){
+        Alert addAlert = new Alert(Alert.AlertType.INFORMATION);
+        addAlert.setTitle(bundle.getString("orderDialog.success"));
+        addAlert.setHeaderText(bundle.getString("returnOrderDialog.title"));
+        addAlert.setContentText(bundle.getString("returnOrderDialog.header"));
+        addAlert.showAndWait();
+    }
     public static void deleteCustomerDialog(){
         Alert addAlert = new Alert(Alert.AlertType.WARNING);
         addAlert.setTitle(bundle.getString("deleteCustomerDialog.title"));

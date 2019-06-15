@@ -80,9 +80,9 @@
       </HBox>
       <TableView fx:id="orderTableView" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="rfidTableColumn" prefWidth="125.0" text="%items.label.external_id" />
+          <TableColumn fx:id="rfidTableColumn" prefWidth="125.0" text="%items.label.external_id2" />
           <TableColumn fx:id="typeTabelColumn" prefWidth="125.0" text="%items.label.type" />
-            <TableColumn fx:id="priceTableColumn" prefWidth="125.0" text="%items.label.price" />
+            <TableColumn fx:id="priceTableColumn" prefWidth="125.0" text="%items.label.price2" />
             <TableColumn fx:id="sizeTableColumn" prefWidth="125.0" text="%items.label.size" />
             <TableColumn fx:id="descriptionTableColumn" minWidth="75.0" prefWidth="250.0" text="%items.label.description" />
         </columns>

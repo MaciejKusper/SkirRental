@@ -123,7 +123,10 @@ public class OrderController {
         //Date date= new Date(2018,2,11);
         this.itemsModel.orderItems(this.itemsModel.getItemsFXObservableList(),this.orderModel.orderFXObjectProperty,this.customerModel.customerProperty());
         //this.itemsModel.saveItemToDB("ss11", Converters.convertToOrder(this.orderModel.orderFXObjectProperty.get()),"cos", 2.2,"s017",date,null,null );
-
+        DialogsUtils.addOrderDialog(orderNumber.getText());
+        addItemsTextField.clear();
+        orderNumber.setText(null);
+        orderSum.setText("-");
     }
 
     public void deleteCustomer() throws ApplicationException {
@@ -137,6 +140,7 @@ public class OrderController {
     @FXML
     public void addNewItem() throws ApplicationException {
             this.itemsModel.takeRFIDFromDB(addItemsTextField.getText());
+             addItemsTextField.clear();
     }
     private void initBinding() {
         saveOrderButton.disableProperty().bind(selectCustomerComboBox.valueProperty().isNull());

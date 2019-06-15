@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -52,13 +53,27 @@
         </HBox>
         <TableView fx:id="orderTableView" prefHeight="200.0" prefWidth="200.0">
             <columns>
-                <TableColumn fx:id="rfidTableColumn" prefWidth="125.0" text="%items.label.external_id" />
+                <TableColumn fx:id="rfidTableColumn" prefWidth="125.0" text="%items.label.external_id2" />
                 <TableColumn fx:id="typeTabelColumn" prefWidth="125.0" text="%items.label.type" />
-                <TableColumn fx:id="priceTableColumn" prefWidth="125.0" text="%items.label.price" />
+                <TableColumn fx:id="priceTableColumn" prefWidth="125.0" text="%items.label.price2" />
                 <TableColumn fx:id="sizeTableColumn" prefWidth="100.0" text="%items.label.size" />
                 <TableColumn fx:id="descriptionTableColumn" minWidth="75.0" prefWidth="250.0" text="%items.label.description" />
             </columns>
         </TableView>
+      <HBox layoutX="10.0" layoutY="267.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="orderDateLabel" prefHeight="21.0" prefWidth="175.0" text="%order.label.orderDate">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="orderDate" prefHeight="31.0" prefWidth="153.0" text="-">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label prefHeight="21.0" prefWidth="175.0" text="%order.label.time">
@@ -75,7 +90,7 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label prefHeight="21.0" prefWidth="175.0" text="%order.slider.disocunt">
+            <Label prefHeight="21.0" prefWidth="175.0" text="%order.slider.discount">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -96,6 +111,9 @@
                     <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </HBox.margin>
+               <tooltip>
+                  <Tooltip text="%order.finalPrice.tooltip" />
+               </tooltip>
                 </Label>
                 <Label fx:id="orderSum" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="60.0" text="0.00">
                     <HBox.margin>

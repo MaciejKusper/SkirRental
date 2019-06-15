@@ -8,6 +8,7 @@ import skirental.models.ItemsFX;
 import skirental.models.ItemsModel;
 import skirental.models.OrderModel;
 import skirental.utils.Converters;
+import skirental.utils.DialogsUtils;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -54,6 +55,12 @@ public class ReturnController {
 
     @FXML
     private Label orderSum;
+
+    @FXML
+    private Label orderDateLabel;
+
+    @FXML
+    private Label orderDate;
 
     @FXML
     private Button calculate;
@@ -110,8 +117,12 @@ public class ReturnController {
         for (ItemsFX itemsFX : list) {
             sum += itemsFX.getPrice();
         }
-
-        sum_f = round(sum*duration*((100-discount)/100));
+        if(duration>0) {
+            sum_f = round(sum * duration * ((100 - discount) / 100));
+        }
+        else{
+            sum_f = round(sum * ((100 - discount) / 100));
+        }
         orderSum.setText(""+sum_f);
         finalPrice = toIntExact(sum_f);
     }
@@ -123,6 +134,7 @@ public class ReturnController {
         System.out.println("Ostateczna cena " + finalPrice +"\n");
         this.orderModel.returnOrder(this.orderModel.returnOrderFXObjectProperty,finalPrice,this.customerModel.getCustomerStr().getExternal_id());
         this.itemsModel.returnItems(this.itemsModel.getItemsFXObservableList());
+        DialogsUtils.returnOrderDialog();
 
        // PrinterJob printerJob = PrinterJob.createPrinterJob();
        /*if (printerJob.showPrintDialog(primaryStage) && printerJob.printPage(orderTableView))
@@ -138,6 +150,7 @@ public class ReturnController {
 
         this.orderModel.takeOrderByID(Converters.convertToInteger(takeOrder.getText()));
         orderNumber.setText(""+orderModel.returnOrderIdProperty.get());
+        orderDate.setText(""+orderModel.returnOrderFXObjectProperty.get().getOrderDate());
         itemsModel.takeByOrderIdFromDB(orderModel.returnOrderIdProperty.get());
         customerModel.takeCustomerByID(itemsModel.getCustomerId());
         if (customerModel.getCustomerStr()!=null) {

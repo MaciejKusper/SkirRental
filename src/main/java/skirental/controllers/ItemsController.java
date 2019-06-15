@@ -48,6 +48,12 @@ public class ItemsController {
 
     public void addItem() throws ApplicationException {
         itemsModel.saveItemToDB(rfidText.getText(),null, typeText.getText(), Converters.convertToDouble(priceText.getText()),sizeText.getText(), Converters.convertToDate(serviceDate.getValue()) , descriptionTextArea.getText(),condition.getValue());
+        rfidText.clear();
+        typeText.clear();
+        priceText.clear();
+        sizeText.clear();
+        descriptionTextArea.clear();
+        condition.setValue(0.0);
     }
 
 

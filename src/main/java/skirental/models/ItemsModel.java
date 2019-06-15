@@ -21,6 +21,9 @@ import java.util.List;
 
 public class ItemsModel {
 
+    private ObservableList<ItemsFX> itemsFXObservableList = FXCollections.observableArrayList();
+    private IntegerProperty customerId = new SimpleIntegerProperty();
+
     public void takeItemsFromDB() throws ApplicationException {
         ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
         List<Items> itemsList = itemsDao.queryForAll(Items.class);
@@ -104,10 +107,12 @@ public class ItemsModel {
                     }
                     finally {
                         DatabaseManager.closeConnectionSource();
+
                     }
                 }
-                );
 
+                );
+        this.itemsFXObservableList.clear();
     }
     public  void returnItems(ObservableList<ItemsFX> itemsFXObservableList){
         ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
@@ -129,7 +134,7 @@ public class ItemsModel {
 
     }
 
-    private ObservableList<ItemsFX> itemsFXObservableList = FXCollections.observableArrayList();
+
 
     public ObservableList<ItemsFX> getItemsFXObservableList() {
         return itemsFXObservableList;
@@ -138,7 +143,7 @@ public class ItemsModel {
     public void setItemsFXObservableList(ObservableList<ItemsFX> itemsFXObservableList) {
         this.itemsFXObservableList = itemsFXObservableList;
     }
-    private IntegerProperty customerId = new SimpleIntegerProperty();
+
 
     public int getCustomerId() {
         return customerId.get();
@@ -151,4 +156,5 @@ public class ItemsModel {
     public void setCustomerId(int customerId) {
         this.customerId.set(customerId);
     }
+
 }
