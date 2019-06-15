@@ -81,7 +81,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="numberHourLabel" prefHeight="31.0" prefWidth="153.0" text="0">
+            <Label fx:id="numberHourLabel" prefHeight="31.0" prefWidth="153.0" text="-">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -115,7 +115,7 @@
                   <Tooltip text="%order.finalPrice.tooltip" />
                </tooltip>
                 </Label>
-                <Label fx:id="orderSum" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="60.0" text="0.00">
+                <Label fx:id="orderSum" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="60.0" text="0">
                     <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </HBox.margin>

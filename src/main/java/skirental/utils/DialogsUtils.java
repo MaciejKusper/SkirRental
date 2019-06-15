@@ -42,11 +42,11 @@ public class DialogsUtils {
         addAlert.showAndWait();
     }
 
-    public static void returnOrderDialog(){
+    public static void returnOrderDialog(String s){
         Alert addAlert = new Alert(Alert.AlertType.INFORMATION);
         addAlert.setTitle(bundle.getString("orderDialog.success"));
         addAlert.setHeaderText(bundle.getString("returnOrderDialog.title"));
-        addAlert.setContentText(bundle.getString("returnOrderDialog.header"));
+        addAlert.setContentText(bundle.getString("returnOrderDialog.header")+s);
         addAlert.showAndWait();
     }
     public static void deleteCustomerDialog(){

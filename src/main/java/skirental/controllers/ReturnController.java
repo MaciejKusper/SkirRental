@@ -130,24 +130,18 @@ public class ReturnController {
 
     @FXML
     void returnOrder() {
-        System.out.println("Twoje zamowienie "+ orderModel.returnOrderIdProperty.get() + " zostało zwrócone\n");
-        System.out.println("Ostateczna cena " + finalPrice +"\n");
         this.orderModel.returnOrder(this.orderModel.returnOrderFXObjectProperty,finalPrice,this.customerModel.getCustomerStr().getExternal_id());
         this.itemsModel.returnItems(this.itemsModel.getItemsFXObservableList());
-        DialogsUtils.returnOrderDialog();
-
-       // PrinterJob printerJob = PrinterJob.createPrinterJob();
-       /*if (printerJob.showPrintDialog(primaryStage) && printerJob.printPage(orderTableView))
-        {
-            printerJob.endJob();
-            System.out.println("printed");
-        }*/
-        //itemsModel.returnItems(itemsModel.getItemsFXObservableList());
+        DialogsUtils.returnOrderDialog(" "+finalPrice);
+        orderDate.setText("-");
+        orderNumber.setText("-");
+        orderSum.setText(""+0);
+        discountSlider.setValue(0);
+        takeOrder.clear();
     }
 
     @FXML
     void searchOrder() throws ApplicationException {
-
         this.orderModel.takeOrderByID(Converters.convertToInteger(takeOrder.getText()));
         orderNumber.setText(""+orderModel.returnOrderIdProperty.get());
         orderDate.setText(""+orderModel.returnOrderFXObjectProperty.get().getOrderDate());

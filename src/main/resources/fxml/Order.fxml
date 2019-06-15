@@ -94,7 +94,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="orderSum" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="65.0" text="0.00">
+            <Label fx:id="orderSum" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="65.0" text="0">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>

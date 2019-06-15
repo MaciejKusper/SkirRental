@@ -131,7 +131,7 @@ public class ItemsModel {
                     }
                 }
         );
-
+        this.itemsFXObservableList.clear();
     }
 
 
