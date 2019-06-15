@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="CENTER" prefHeight="676.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skirental.controllers.ItemsController">
+<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skirental.controllers.ItemsController">
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="50.0" prefWidth="150.0" />
     <ColumnConstraints hgrow="SOMETIMES" />
@@ -31,7 +31,7 @@
       <Label prefHeight="17.0" prefWidth="100.0" text="%items.label.type" GridPane.rowIndex="1" />
       <Label prefHeight="17.0" prefWidth="100.0" text="%items.label.price" GridPane.rowIndex="2" />
       <Label prefHeight="17.0" prefWidth="100.0" text="%items.label.size" GridPane.rowIndex="3" />
-      <Label prefHeight="17.0" prefWidth="100.0" text="%items.label.serviceDate" GridPane.rowIndex="4" />
+      <Label prefHeight="21.0" prefWidth="105.0" text="%items.label.serviceDate" GridPane.rowIndex="4" />
       <Label prefHeight="17.0" prefWidth="100.0" text="%items.label.description" GridPane.rowIndex="5" />
       <Label prefHeight="17.0" prefWidth="100.0" text="%items.label.condition" GridPane.rowIndex="6" />
       <TextField fx:id="rfidText" maxWidth="300.0" prefWidth="300.0" GridPane.columnIndex="1">

@@ -109,6 +109,25 @@ public class ItemsModel {
                 );
 
     }
+    public  void returnItems(ObservableList<ItemsFX> itemsFXObservableList){
+        ItemsDao itemsDao = new ItemsDao(DatabaseManager.getConnectionSource());
+
+        itemsFXObservableList.forEach(itemsFX->{
+                    Items items=  Converters.convertToItems(itemsFX);
+                    items.setOrder(null);
+                    items.setCustomer(null);
+                    try {
+                        itemsDao.creatOrUpdate(items);
+                    } catch (ApplicationException e) {
+                        e.printStackTrace();
+                    }
+                    finally {
+                        DatabaseManager.closeConnectionSource();
+                    }
+                }
+        );
+
+    }
 
     private ObservableList<ItemsFX> itemsFXObservableList = FXCollections.observableArrayList();
 

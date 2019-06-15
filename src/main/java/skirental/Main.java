@@ -20,7 +20,7 @@ public class Main extends Application {
 
     public void start(Stage primaryStage) throws Exception {
         Pane borderPane = FxmlUtils.fxmlLoader(BORDER_PANE_MAIN_FXML);
-        Scene scene = new Scene(borderPane, 800, 600);
+        Scene scene = new Scene(borderPane, 800, 700);
         primaryStage.setScene(scene);
         primaryStage.setTitle(FxmlUtils.getResourceBundle().getString("tittle.application"));
         primaryStage.show();

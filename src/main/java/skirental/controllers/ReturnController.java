@@ -1,11 +1,10 @@
 package skirental.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.print.PrinterJob;
+import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.models.CustomerModel;
 import skirental.models.ItemsFX;
@@ -17,6 +16,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+
+import static java.lang.Math.round;
 
 public class ReturnController {
 
@@ -38,6 +39,9 @@ public class ReturnController {
 
     @FXML
     private Button insertItem;
+
+    @FXML
+    private Slider discountSlider;
 
     @FXML
     private TableView<ItemsFX> orderTableView;
@@ -100,18 +104,29 @@ public class ReturnController {
     @FXML
     void calculateButton() {
         double sum = 0.0;
+        double discount;
+        discount = discountSlider.getValue();
+        System.out.println(discount);
         List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
         for (ItemsFX itemsFX : list) {
             sum += itemsFX.getPrice();
         }
-        sum = sum*duration;
+
+        sum = round(sum*duration*((100-discount)/100));
         orderSum.setText(""+sum);
     }
 
 
     @FXML
-    void saveOrder() {
-        itemsModel.returnItems(itemsModel.getItemsFXObservableList());
+    void returnOrder() {
+
+       // PrinterJob printerJob = PrinterJob.createPrinterJob();
+       /*if (printerJob.showPrintDialog(primaryStage) && printerJob.printPage(orderTableView))
+        {
+            printerJob.endJob();
+            System.out.println("printed");
+        }*/
+        //itemsModel.returnItems(itemsModel.getItemsFXObservableList());
     }
 
     @FXML
