@@ -129,7 +129,8 @@ public static OrderFX convertToOrderFX(Order order){
     orderFX.setId(order.getId());
     orderFX.setOrderDate(Converters.convertToLocalDate(order.getOrderDate()));
     orderFX.setReturnDate(Converters.convertToLocalDate(order.getReturnDate()));
-
+    orderFX.setFinalPrice(order.getFinalPrice());
+    orderFX.setClientRfid(order.getClientRFID());
     return  orderFX;
 }
 
@@ -138,6 +139,8 @@ public static Order convertToOrder(OrderFX orderFX){
         order.setId(orderFX.getId());
         order.setOrderDate(Converters.convertToDate(orderFX.getOrderDate()));
         order.setReturnDate(Converters.convertToDate(orderFX.getReturnDate()));
+        order.setFinalPrice(orderFX.getFinalPrice());
+        order.setClientRFID(orderFX.getClientRfid());
         return order;
 }
 }

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.print.PrinterJob;
 import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
+import skirental.database.dao.OrdersDao;
 import skirental.models.CustomerModel;
 import skirental.models.ItemsFX;
 import skirental.models.ItemsModel;
@@ -18,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import static java.lang.Math.round;
+import static java.lang.Math.toIntExact;
 
 public class ReturnController {
 
@@ -77,6 +79,7 @@ public class ReturnController {
     private ItemsModel itemsModel;
     private OrderModel orderModel;
     private long duration;
+    private Integer finalPrice;
 
     @FXML
     private  void initialize() throws ApplicationException {
@@ -104,7 +107,9 @@ public class ReturnController {
     @FXML
     void calculateButton() {
         double sum = 0.0;
+        long sum_f;
         double discount;
+
         discount = discountSlider.getValue();
         System.out.println(discount);
         List<ItemsFX> list = this.itemsModel.getItemsFXObservableList();
@@ -112,13 +117,18 @@ public class ReturnController {
             sum += itemsFX.getPrice();
         }
 
-        sum = round(sum*duration*((100-discount)/100));
-        orderSum.setText(""+sum);
+        sum_f = round(sum*duration*((100-discount)/100));
+        orderSum.setText(""+sum_f);
+        finalPrice = toIntExact(sum_f);
     }
 
 
     @FXML
     void returnOrder() {
+        System.out.println("Twoje zamowienie "+ orderModel.returnOrderIdProperty.get() + " zostało zwrócone\n");
+        System.out.println("Ostateczna cena " + finalPrice +"\n");
+        this.orderModel.returnOrder(this.orderModel.returnOrderFXObjectProperty,finalPrice,this.customerModel.getCustomerStr().getExternal_id());
+        this.itemsModel.returnItems(this.itemsModel.getItemsFXObservableList());
 
        // PrinterJob printerJob = PrinterJob.createPrinterJob();
        /*if (printerJob.showPrintDialog(primaryStage) && printerJob.printPage(orderTableView))

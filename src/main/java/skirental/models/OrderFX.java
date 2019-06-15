@@ -10,7 +10,8 @@ public class OrderFX {
     private IntegerProperty id = new SimpleIntegerProperty();
     private SimpleObjectProperty<LocalDate> orderDate = new SimpleObjectProperty<>();
     private SimpleObjectProperty<LocalDate> returnDate = new SimpleObjectProperty<>();
-
+    private IntegerProperty finalPrice = new SimpleIntegerProperty();
+    private StringProperty clientRfid = new SimpleStringProperty();
 
     public int getId() {
         return id.get();
@@ -48,4 +49,27 @@ public class OrderFX {
         this.id.set(id);
     }
 
+    public int getFinalPrice() {
+        return finalPrice.get();
+    }
+
+    public IntegerProperty finalPriceProperty() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(int finalPrice) {
+        this.finalPrice.set(finalPrice);
+    }
+
+    public String getClientRfid() {
+        return clientRfid.get();
+    }
+
+    public StringProperty clientRfidProperty() {
+        return clientRfid;
+    }
+
+    public void setClientRfid(String clientRfid) {
+        this.clientRfid.set(clientRfid);
+    }
 }

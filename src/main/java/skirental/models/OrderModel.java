@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.database.dao.OrdersDao;
 import skirental.database.dbUtils.DatabaseManager;
@@ -48,6 +49,22 @@ public void takeLastOrderFromDatabase() throws ApplicationException{
         returnOrderIdProperty.setValue(order.getId());
         returnOrderFXObjectProperty.set(orderFX);
         DatabaseManager.closeConnectionSource();
+    }
+
+    public void returnOrder(ObjectProperty<OrderFX>  retOrderFXObjectProperty,Integer finalPrice,String clientRfid){
+    OrdersDao ordersDao = new OrdersDao(DatabaseManager.getConnectionSource());
+    Order order = Converters.convertToOrder(retOrderFXObjectProperty.get());
+    order.setReturnDate(new Date(System.currentTimeMillis()));
+    order.setFinalPrice(finalPrice);
+    order.setClientRFID(clientRfid);
+        try {
+            ordersDao.creatOrUpdate(order);
+        } catch (ApplicationException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DatabaseManager.closeConnectionSource();
+        }
     }
 
     public OrderFX getOrderFXObjectProperty() {

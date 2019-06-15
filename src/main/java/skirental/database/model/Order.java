@@ -24,6 +24,11 @@ public class Order implements BaseModel {
     @DatabaseField(columnName = "RETURN_DATE")
     private Date returnDate;
 
+    @DatabaseField(columnName = "FINAL_PRICE")
+    private int finalPrice;
+
+    @DatabaseField(columnName = "CLIENT_RFID")
+    private String ClientRFID;
 
 
     @ForeignCollectionField()
@@ -59,6 +64,22 @@ public class Order implements BaseModel {
 
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public int getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(int finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public String getClientRFID() {
+        return ClientRFID;
+    }
+
+    public void setClientRFID(String clientRFID) {
+        ClientRFID = clientRFID;
     }
 
     @Override
