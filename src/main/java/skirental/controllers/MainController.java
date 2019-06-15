@@ -20,6 +20,7 @@ public class MainController {
     private void initialize()
     {
     topMenuController.setMainController(this);
+        borderPane.setCenter(FxmlUtils.fxmlLoader("/fxml/MainMain.fxml"));
     }
 
     public void setCenter(String fxmlPath){

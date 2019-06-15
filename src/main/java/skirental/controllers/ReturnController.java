@@ -1,12 +1,8 @@
 package skirental.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.print.PrinterJob;
 import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
-import skirental.database.dao.OrdersDao;
 import skirental.models.CustomerModel;
 import skirental.models.ItemsFX;
 import skirental.models.ItemsModel;
@@ -15,7 +11,6 @@ import skirental.utils.Converters;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import static java.lang.Math.round;
@@ -31,16 +26,7 @@ public class ReturnController {
     private TextField takeOrder;
 
     @FXML
-    private Button searchOrderButton;
-
-    @FXML
     private Label customerLabel;
-
-    @FXML
-    private TextField addItemsTextField;
-
-    @FXML
-    private Button insertItem;
 
     @FXML
     private Slider discountSlider;
@@ -64,7 +50,7 @@ public class ReturnController {
     private TableColumn<ItemsFX, String> descriptionTableColumn;
 
     @FXML
-    private Label nuberHourLable;
+    private Label numberHourLabel;
 
     @FXML
     private Label orderSum;
@@ -93,6 +79,14 @@ public class ReturnController {
         this.priceTableColumn.setCellValueFactory(cellData-> cellData.getValue().priceProperty().asObject());
         this.sizeTableColumn.setCellValueFactory(cellData-> cellData.getValue().sizeProperty());
         this.descriptionTableColumn.setCellValueFactory(cellData-> cellData.getValue().descriptionProperty());
+        initBinding();
+    }
+
+    private void initBinding() {
+
+        returnButton.disableProperty().bind(orderNumber.textProperty().isEmpty());
+        calculate.disableProperty().bind(orderNumber.textProperty().isEmpty());
+        discountSlider.disableProperty().bind(orderNumber.textProperty().isEmpty());
     }
     @FXML
     void addItemsListener() {
@@ -144,8 +138,6 @@ public class ReturnController {
 
         this.orderModel.takeOrderByID(Converters.convertToInteger(takeOrder.getText()));
         orderNumber.setText(""+orderModel.returnOrderIdProperty.get());
-
-        //orderNumber.setText(""+Integer.parseInt(takeOrder.getText()));
         itemsModel.takeByOrderIdFromDB(orderModel.returnOrderIdProperty.get());
         customerModel.takeCustomerByID(itemsModel.getCustomerId());
         if (customerModel.getCustomerStr()!=null) {
@@ -155,7 +147,7 @@ public class ReturnController {
             LocalDate orderDate = orderModel.returnOrderFXObjectProperty.get().getOrderDate();
             LocalDate today = LocalDate.now();
             duration =Duration.between(orderDate.atStartOfDay(),today.atStartOfDay()).toHours();
-            nuberHourLable.setText(""+duration);
+            numberHourLabel.setText(""+duration);
         }
 
     }

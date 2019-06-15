@@ -35,7 +35,7 @@ public class TopMenuController {
         mainController.setCenter(ITEMS_FXML);
     }
 
-    public void openReturn(ActionEvent actionEvent) {
+    public void openReturn() {
         mainController.setCenter(RETURN_FXML);
     }
 }

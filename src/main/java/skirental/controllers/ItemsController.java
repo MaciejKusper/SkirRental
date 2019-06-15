@@ -39,9 +39,12 @@ public class ItemsController {
     public void initialize(){
 
         this.itemsModel= new ItemsModel();
+        initBinding();
 
     }
-
+    private void initBinding() {
+        newItemButton.disableProperty().bind(rfidText.textProperty().isEmpty().or(priceText.textProperty().isEmpty()).or(serviceDate.valueProperty().isNull()));
+    }
 
     public void addItem() throws ApplicationException {
         itemsModel.saveItemToDB(rfidText.getText(),null, typeText.getText(), Converters.convertToDouble(priceText.getText()),sizeText.getText(), Converters.convertToDate(serviceDate.getValue()) , descriptionTextArea.getText(),condition.getValue());

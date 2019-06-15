@@ -15,7 +15,7 @@ public class OrderController {
     private Button newOrderButton;
 
     @FXML
-    private ComboBox<CustomerFX> selectCustomerComboBox;
+    private Button deleteButton;
 
     @FXML
     private Button addNewCustomerButton;
@@ -24,10 +24,16 @@ public class OrderController {
     private Button insertItem;
 
     @FXML
+    private ComboBox<CustomerFX> selectCustomerComboBox;
+
+    @FXML
     private TextField addItemsTextField;
 
     @FXML
     private Button saveOrderButton;
+
+    @FXML
+    private Button calculate;
 
     @FXML
     private Label orderSum;
@@ -67,7 +73,7 @@ public class OrderController {
        //this.itemsModel.takeItemsFromDB();
         this.customerModel.takeCustomerFromDB();
        //this.orderModel.takeLastOrderFromDatabase();
-       orderNumber.setText("" +this.orderModel.orderIdProperty.getValue());
+      // orderNumber.setText("" +this.orderModel.orderIdProperty.getValue());
         initBinding();
         this.selectCustomerComboBox.setItems(this.customerModel.getCustomerFXObservableList());
         this.orderTableView.setItems(this.itemsModel.getItemsFXObservableList());
@@ -134,6 +140,12 @@ public class OrderController {
     }
     private void initBinding() {
         saveOrderButton.disableProperty().bind(selectCustomerComboBox.valueProperty().isNull());
+        deleteButton.disableProperty().bind(orderNumber.textProperty().isEmpty());
+        addNewCustomerButton.disableProperty().bind(orderNumber.textProperty().isEmpty());
+        insertItem.disableProperty().bind(orderNumber.textProperty().isEmpty());
+        selectCustomerComboBox.disableProperty().bind(orderNumber.textProperty().isEmpty());
+        calculate.disableProperty().bind(orderNumber.textProperty().isEmpty());
+        addItemsTextField.disableProperty().bind(orderNumber.textProperty().isEmpty());
     }
 
     public void calculateButton() {
