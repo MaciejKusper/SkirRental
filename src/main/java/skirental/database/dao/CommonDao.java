@@ -8,6 +8,8 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.database.model.BaseModel;
+import skirental.utils.DialogsUtils;
+import skirental.utils.FxmlUtils;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -27,8 +29,8 @@ public class CommonDao {
             dao.createOrUpdate((T) baseModel);
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
-
         }
+
     }
 
     public <T extends BaseModel, I> void refresh(BaseModel baseModel) throws ApplicationException {
@@ -54,6 +56,7 @@ public class CommonDao {
             dao.deleteById((I) id);
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
+           DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorDao.notFound"));
         }
 }
     public <T extends BaseModel, I> T findById(Class<T> cls, Integer id) throws ApplicationException {

@@ -9,6 +9,7 @@ import skirental.models.ItemsModel;
 import skirental.models.OrderModel;
 import skirental.utils.Converters;
 import skirental.utils.DialogsUtils;
+import skirental.utils.FxmlUtils;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -143,18 +144,27 @@ public class ReturnController {
     @FXML
     void searchOrder() throws ApplicationException {
         this.orderModel.takeOrderByID(Converters.convertToInteger(takeOrder.getText()));
-        orderNumber.setText(""+orderModel.returnOrderIdProperty.get());
-        orderDate.setText(""+orderModel.returnOrderFXObjectProperty.get().getOrderDate());
-        itemsModel.takeByOrderIdFromDB(orderModel.returnOrderIdProperty.get());
-        customerModel.takeCustomerByID(itemsModel.getCustomerId());
-        if (customerModel.getCustomerStr()!=null) {
-            customerLabel.setText(customerModel.getCustomerStr().getName() + customerModel.getCustomerStr().getSurname());
+        //if(orderModel.returnOrderFXObjectProperty == null){
+        //    System.out.println("Nie istnieje takie zamowienie!");
+       // }
+        if(orderModel.returnOrderFXObjectProperty.get().getClientRfid() != null){
+            DialogsUtils.orderReturnedDialog(" " + orderModel.returnOrderFXObjectProperty.get().getClientRfid()," " + orderModel.returnOrderFXObjectProperty.get().getOrderDate());
+            takeOrder.clear();
         }
-        if (orderModel.returnOrderFXObjectProperty.get().getOrderDate()!=null) {
-            LocalDate orderDate = orderModel.returnOrderFXObjectProperty.get().getOrderDate();
-            LocalDate today = LocalDate.now();
-            duration =Duration.between(orderDate.atStartOfDay(),today.atStartOfDay()).toHours();
-            numberHourLabel.setText(""+duration);
+        else {
+            orderNumber.setText("" + orderModel.returnOrderIdProperty.get());
+            orderDate.setText("" + orderModel.returnOrderFXObjectProperty.get().getOrderDate());
+            itemsModel.takeByOrderIdFromDB(orderModel.returnOrderIdProperty.get());
+            customerModel.takeCustomerByID(itemsModel.getCustomerId());
+            if (customerModel.getCustomerStr() != null) {
+                customerLabel.setText(customerModel.getCustomerStr().getName() + customerModel.getCustomerStr().getSurname());
+            }
+            if (orderModel.returnOrderFXObjectProperty.get().getOrderDate() != null) {
+                LocalDate orderDate = orderModel.returnOrderFXObjectProperty.get().getOrderDate();
+                LocalDate today = LocalDate.now();
+                duration = Duration.between(orderDate.atStartOfDay(), today.atStartOfDay()).toHours();
+                numberHourLabel.setText("" + duration);
+            }
         }
 
     }

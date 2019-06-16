@@ -49,6 +49,14 @@ public class DialogsUtils {
         addAlert.setContentText(bundle.getString("returnOrderDialog.header")+s);
         addAlert.showAndWait();
     }
+    public static void orderReturnedDialog(String c, String d){
+        Alert addAlert = new Alert(Alert.AlertType.INFORMATION);
+        addAlert.setTitle(bundle.getString("orderDialog.returned"));
+        addAlert.setHeaderText(bundle.getString("returnedOrderDialog.title")+c);
+        addAlert.setContentText(bundle.getString("returnedOrderDialog.header")+d);
+        addAlert.showAndWait();
+    }
+
     public static void deleteCustomerDialog(){
         Alert addAlert = new Alert(Alert.AlertType.WARNING);
         addAlert.setTitle(bundle.getString("deleteCustomerDialog.title"));
