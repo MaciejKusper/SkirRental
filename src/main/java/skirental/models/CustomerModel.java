@@ -44,7 +44,7 @@ public class CustomerModel {
         List<Customer> customers = customerDao.queryForAll(Customer.class);
         this.customerFXObservableList.clear();
         customers.forEach(e->{
-           CustomerFX customerFX = Converters.ConvertToCustomerFX(e);
+           CustomerFX customerFX = Converters.convertToCustomerFX(e);
             this.customerFXObservableList.add(customerFX);
         });
         DatabaseManager.closeConnectionSource();
@@ -52,8 +52,19 @@ public class CustomerModel {
     public void takeCustomerByID(int id) throws ApplicationException {
         CustomerDao customerDao = new CustomerDao(DatabaseManager.getConnectionSource());
         Customer customer = customerDao.findById(Customer.class, id);
-        CustomerFX customerFX = Converters.ConvertToCustomerFX(customer);
+        CustomerFX customerFX = Converters.convertToCustomerFX(customer);
         this.customerStr.set(customerFX);
+        DatabaseManager.closeConnectionSource();
+    }
+
+    public void takeCustomerByRFIDFromDB(String rfid) throws ApplicationException {
+        CustomerDao customerDao = new CustomerDao(DatabaseManager.getConnectionSource());
+        List<Customer> customerList = customerDao.queryForEq(Customer.class,"external_id", rfid);
+        //this.itemsFXObservableList.clear();
+        customerList.forEach(customer -> {
+            CustomerFX customerFX = Converters.convertToCustomerFX(customer);
+            this.customerFXObservableList.add(customerFX);
+        });
         DatabaseManager.closeConnectionSource();
     }
 

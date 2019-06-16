@@ -144,9 +144,6 @@ public class ReturnController {
     @FXML
     void searchOrder() throws ApplicationException {
         this.orderModel.takeOrderByID(Converters.convertToInteger(takeOrder.getText()));
-        //if(orderModel.returnOrderFXObjectProperty == null){
-        //    System.out.println("Nie istnieje takie zamowienie!");
-       // }
         if(orderModel.returnOrderFXObjectProperty.get().getClientRfid() != null){
             DialogsUtils.orderReturnedDialog(" " + orderModel.returnOrderFXObjectProperty.get().getClientRfid()," " + orderModel.returnOrderFXObjectProperty.get().getOrderDate());
             takeOrder.clear();
@@ -157,7 +154,7 @@ public class ReturnController {
             itemsModel.takeByOrderIdFromDB(orderModel.returnOrderIdProperty.get());
             customerModel.takeCustomerByID(itemsModel.getCustomerId());
             if (customerModel.getCustomerStr() != null) {
-                customerLabel.setText(customerModel.getCustomerStr().getName() + customerModel.getCustomerStr().getSurname());
+                customerLabel.setText(customerModel.getCustomerStr().getName() +" "+ customerModel.getCustomerStr().getSurname()+" "+customerModel.getCustomerStr().getExternal_id());
             }
             if (orderModel.returnOrderFXObjectProperty.get().getOrderDate() != null) {
                 LocalDate orderDate = orderModel.returnOrderFXObjectProperty.get().getOrderDate();

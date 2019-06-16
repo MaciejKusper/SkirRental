@@ -1,5 +1,6 @@
 package skirental.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.omg.CORBA.portable.ApplicationException;
@@ -13,9 +14,6 @@ public class OrderController {
 
     @FXML
     private Button newOrderButton;
-
-    @FXML
-    private Button deleteButton;
 
     @FXML
     private Button addNewCustomerButton;
@@ -34,6 +32,11 @@ public class OrderController {
 
     @FXML
     private Button calculate;
+    @FXML
+    private TextField searchCustomerTextField;
+
+    @FXML
+    private Button searchCustomerButton;
 
     @FXML
     private Label orderSum;
@@ -71,7 +74,7 @@ public class OrderController {
         this.itemsModel = new ItemsModel();
         this.orderModel = new OrderModel();
        //this.itemsModel.takeItemsFromDB();
-        this.customerModel.takeCustomerFromDB();
+        //this.customerModel.takeCustomerFromDB();
        //this.orderModel.takeLastOrderFromDatabase();
       // orderNumber.setText("" +this.orderModel.orderIdProperty.getValue());
         initBinding();
@@ -117,22 +120,15 @@ public class OrderController {
 }
     @FXML
     void saveOrder() throws ApplicationException {
-
         orderModel.takeLastOrderFromDatabase();
         System.out.println(this.orderModel.orderFXObjectProperty.toString());
-        //Date date= new Date(2018,2,11);
         this.itemsModel.orderItems(this.itemsModel.getItemsFXObservableList(),this.orderModel.orderFXObjectProperty,this.customerModel.customerProperty());
-        //this.itemsModel.saveItemToDB("ss11", Converters.convertToOrder(this.orderModel.orderFXObjectProperty.get()),"cos", 2.2,"s017",date,null,null );
         DialogsUtils.addOrderDialog(orderNumber.getText());
         addItemsTextField.clear();
         orderNumber.setText(null);
         orderSum.setText("-");
     }
 
-    public void deleteCustomer() throws ApplicationException {
-        DialogsUtils.deleteCustomerDialog();
-        initialize();
-    }
 
     public void selectedOnComboBox() {
         this.customerModel.setCustomer(this.selectCustomerComboBox.getSelectionModel().getSelectedItem());
@@ -144,12 +140,12 @@ public class OrderController {
     }
     private void initBinding() {
         saveOrderButton.disableProperty().bind(selectCustomerComboBox.valueProperty().isNull());
-        deleteButton.disableProperty().bind(orderNumber.textProperty().isEmpty());
         addNewCustomerButton.disableProperty().bind(orderNumber.textProperty().isEmpty());
         insertItem.disableProperty().bind(orderNumber.textProperty().isEmpty());
         selectCustomerComboBox.disableProperty().bind(orderNumber.textProperty().isEmpty());
         calculate.disableProperty().bind(orderNumber.textProperty().isEmpty());
         addItemsTextField.disableProperty().bind(orderNumber.textProperty().isEmpty());
+        searchCustomerButton.disableProperty().bind(searchCustomerTextField.textProperty().isEmpty().or(orderNumber.textProperty().isEmpty()));
     }
 
     public void calculateButton() {
@@ -159,5 +155,9 @@ public class OrderController {
             sum += itemsFX.getPrice();
         }
         orderSum.setText(""+sum);
+    }
+
+    public void searchCustomer() throws ApplicationException {
+        customerModel.takeCustomerByRFIDFromDB(searchCustomerTextField.getText());
     }
 }

@@ -1,10 +1,12 @@
 package skirental.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.models.CustomerModel;
+import skirental.utils.DialogsUtils;
 
 
 public class CustomerController {
@@ -41,6 +43,12 @@ public class CustomerController {
         surnameText.clear();
         addresText.clear();
         cardText.clear();
+
+    }
+
+
+    public void deleteCustomer(ActionEvent actionEvent) {
+        DialogsUtils.deleteCustomerDialog();
 
     }
 }

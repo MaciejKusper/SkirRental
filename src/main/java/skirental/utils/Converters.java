@@ -98,7 +98,7 @@ public static Items convertToItems(ItemsFX itemsFX){
     return items;
 }
 
-public static CustomerFX ConvertToCustomerFX(Customer customer){
+public static CustomerFX convertToCustomerFX(Customer customer){
 
     CustomerFX customerFX = new CustomerFX();
     customerFX.setId(customer.getId());
