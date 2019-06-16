@@ -20,7 +20,7 @@ public class Items implements BaseModel {
     private Order order;
     @DatabaseField(columnName = "CUSTOMER_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true)
     private Customer customer;
-    @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false, unique = true)
+    @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false)
     private String external_id;
 
     @DatabaseField(columnName = "TYPE")

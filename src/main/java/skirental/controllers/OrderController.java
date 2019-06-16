@@ -3,6 +3,7 @@ package skirental.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.models.*;
 import skirental.utils.DialogsUtils;
@@ -85,7 +86,7 @@ public class OrderController {
         this.priceTableColumn.setCellValueFactory(cellData-> cellData.getValue().priceProperty().asObject());
        this.sizeTableColumn.setCellValueFactory(cellData-> cellData.getValue().sizeProperty());
        this.descriptionTableColumn.setCellValueFactory(cellData-> cellData.getValue().descriptionProperty());
-
+        addItemsListener();
     }
 
     @FXML
@@ -103,6 +104,7 @@ public class OrderController {
             }
         });
     }
+
 
     @FXML
     void addNewCustomer() throws ApplicationException {
@@ -161,4 +163,6 @@ public class OrderController {
         customerModel.takeCustomerByRFIDFromDB(searchCustomerTextField.getText());
         searchCustomerTextField.clear();
     }
+
+
 }

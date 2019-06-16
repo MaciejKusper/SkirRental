@@ -139,6 +139,7 @@ public class ReturnController {
         orderSum.setText(""+0);
         discountSlider.setValue(0);
         takeOrder.clear();
+        customerLabel.setText("-");
     }
 
     @FXML
