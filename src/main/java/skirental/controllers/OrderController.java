@@ -159,5 +159,6 @@ public class OrderController {
 
     public void searchCustomer() throws ApplicationException {
         customerModel.takeCustomerByRFIDFromDB(searchCustomerTextField.getText());
+        searchCustomerTextField.clear();
     }
 }

@@ -58,6 +58,7 @@ public class CustomerModel {
     }
 
     public void takeCustomerByRFIDFromDB(String rfid) throws ApplicationException {
+        this.customerFXObservableList.clear();
         CustomerDao customerDao = new CustomerDao(DatabaseManager.getConnectionSource());
         List<Customer> customerList = customerDao.queryForEq(Customer.class,"external_id", rfid);
         //this.itemsFXObservableList.clear();
