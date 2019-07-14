@@ -1,7 +1,7 @@
 package skirental.models;
 import javafx.beans.property.*;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 public class CustomerFX {

@@ -17,8 +17,6 @@ public class Customer implements BaseModel{
     @DatabaseField(columnName = "EXTERNAL_ID", canBeNull = false)
     private String external_id;
 
-    @DatabaseField(columnName = "TYPE")
-    private String type;
 
     @DatabaseField(columnName = "NAME", canBeNull = false)
     private String name;
@@ -31,20 +29,6 @@ public class Customer implements BaseModel{
 
     @DatabaseField(columnName = "ADDED_DATE")
     private Date addedDate;
-
-    //@DatabaseField(columnName = "COMMENTS")
-    //private String comments;
-
-    //@ForeignCollectionField(eager = true)
-    //private ForeignCollection<Items> item;
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getName() {
         return name;
@@ -77,23 +61,7 @@ public class Customer implements BaseModel{
     public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
     }
-    /*
-    public String getComments() {
-        return comments;
-    }
 
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    public ForeignCollection<Items> getItem() {
-        return item;
-    }
-
-    public void setItem(ForeignCollection<Items> item) {
-        this.item = item;
-    }
-    */
     public int getId() {
         return id;
     }
@@ -115,7 +83,6 @@ public class Customer implements BaseModel{
         return "Customer{" +
                 "id=" + id +
                 ", external_id='" + external_id + '\'' +
-                ", type='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", addres='" + addres + '\'' +
