@@ -20,6 +20,7 @@ public class Main extends Application {
     }
 
     public void start(Stage primaryStage) throws Exception {
+        DatabaseManager.closeConnectionSource();
         Pane borderPane = FxmlUtils.fxmlLoader(BORDER_PANE_MAIN_FXML);
         Scene scene = new Scene(borderPane, 800, 700);
         primaryStage.setScene(scene);
