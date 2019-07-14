@@ -1,8 +1,7 @@
 package skirental.models;
 
 import javafx.beans.property.*;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ItemsFX {
 
@@ -14,10 +13,10 @@ public class ItemsFX {
     private StringProperty type = new SimpleStringProperty();
     private DoubleProperty price = new SimpleDoubleProperty();
     private StringProperty size = new SimpleStringProperty();
-    private SimpleObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<>();
-    private SimpleObjectProperty<LocalDate> serviceDate = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<LocalDateTime> addedDate = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<LocalDateTime> serviceDate = new SimpleObjectProperty<>();
     private StringProperty description = new SimpleStringProperty();
-
+    private DoubleProperty condition = new SimpleDoubleProperty();
 
     public int getId() {
         return id.get();
@@ -30,6 +29,19 @@ public class ItemsFX {
     public void setId(int id) {
         this.id.set(id);
     }
+
+    public OrderFX getOrder_id() {
+        return order_id.get();
+    }
+
+    public ObjectProperty<OrderFX> order_idProperty() {
+        return order_id;
+    }
+
+    public void setOrder_id(OrderFX order_id) {
+        this.order_id.set(order_id);
+    }
+
     public OrderFX getCustomer_id() {
         return customer_id.get();
     }
@@ -90,27 +102,27 @@ public class ItemsFX {
         this.size.set(size);
     }
 
-    public LocalDate getAddedDate() {
+    public LocalDateTime getAddedDate() {
         return addedDate.get();
     }
 
-    public SimpleObjectProperty<LocalDate> addedDateProperty() {
+    public SimpleObjectProperty<LocalDateTime> addedDateProperty() {
         return addedDate;
     }
 
-    public void setAddedDate(LocalDate addedDate) {
+    public void setAddedDate(LocalDateTime addedDate) {
         this.addedDate.set(addedDate);
     }
 
-    public LocalDate getServiceDate() {
+    public LocalDateTime getServiceDate() {
         return serviceDate.get();
     }
 
-    public SimpleObjectProperty<LocalDate> serviceDateProperty() {
+    public SimpleObjectProperty<LocalDateTime> serviceDateProperty() {
         return serviceDate;
     }
 
-    public void setServiceDate(LocalDate serviceDate) {
+    public void setServiceDate(LocalDateTime serviceDate) {
         this.serviceDate.set(serviceDate);
     }
 
@@ -125,17 +137,16 @@ public class ItemsFX {
     public void setDescription(String description) {
         this.description.set(description);
     }
-    public OrderFX getOrder_id() {
-        return order_id.get();
+
+    public double getCondition() {
+        return condition.get();
     }
 
-    public ObjectProperty<OrderFX> order_idProperty() {
-        return order_id;
+    public DoubleProperty conditionProperty() {
+        return condition;
     }
 
-    public void setOrder_id(OrderFX order_id) {
-        this.order_id.set(order_id);
+    public void setCondition(double condition) {
+        this.condition.set(condition);
     }
-
-
 }

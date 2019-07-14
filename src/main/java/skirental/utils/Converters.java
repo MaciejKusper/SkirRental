@@ -8,6 +8,7 @@ import skirental.models.ItemsFX;
 import skirental.models.OrderFX;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Scanner;
@@ -48,11 +49,11 @@ public class Converters {
         }
 
 
-    public static Date convertToDate(LocalDate localDate) {
+    public static Date convertToDate(LocalDateTime localDateTime) {
         //Convert from LocalDate to Date
-        if (localDate!=null) {
+        if (localDateTime!=null) {
             try {
-                return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
             } catch (Exception e) {
                 DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorData.date"));
             }
@@ -60,11 +61,24 @@ public class Converters {
         return null;
     }
 
-    //Convert from Date to LicalDate
-    public static LocalDate convertToLocalDate(Date date){
+    public static Date convertToDatefromLocalDate(LocalDate localDate) {
+        //Convert from LocalDate to Date
+        if (localDate!=null) {
+            try {
+                return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            } catch (Exception e) {
+                DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorData.date"));
+            }
+        }
+        return null;
+    }
+
+
+    //Convert from Date to LicalDateTime
+    public static LocalDateTime convertToLocalDateTime(Date date){
         if (date!=null) {
             try {
-                return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
             } catch (Exception e) {
                 DialogsUtils.errorDialog(FxmlUtils.getResourceBundle().getString("errorData.date"));
             }
@@ -76,13 +90,14 @@ public static ItemsFX convertToItemsFX (Items items){
     ItemsFX itemsFX = new ItemsFX();
     itemsFX.setId(items.getId());
     //itemsFX.setOrder_id(convertToOrderFX(items.getOrder()));
-    itemsFX.setAddedDate(Converters.convertToLocalDate(items.getAddedDate()));
+    itemsFX.setAddedDate(Converters.convertToLocalDateTime(items.getAddedDate()));
     itemsFX.setDescription(items.getDescription());
     itemsFX.setExternal_id(items.getExternal_id());
     itemsFX.setSize(items.getSize());
     itemsFX.setType(items.getType());
     itemsFX.setPrice(items.getPrice());
-    itemsFX.setServiceDate(Converters.convertToLocalDate(items.getServiceDate()));
+    itemsFX.setServiceDate(Converters.convertToLocalDateTime(items.getServiceDate()));
+    itemsFX.setCondition(items.getCondition());
     return itemsFX;
 }
 public static Items convertToItems(ItemsFX itemsFX){
@@ -95,6 +110,7 @@ public static Items convertToItems(ItemsFX itemsFX){
     items.setType(itemsFX.getType());
     items.setPrice(itemsFX.getPrice());
     items.setServiceDate(Converters.convertToDate(itemsFX.getServiceDate()));
+    items.setCondition(itemsFX.getCondition());
     return items;
 }
 
@@ -105,7 +121,7 @@ public static CustomerFX convertToCustomerFX(Customer customer){
     customerFX.setName(customer.getName());
     customerFX.setSurname(customer.getSurname());
     customerFX.setAddres(customer.getAddres());
-    customerFX.setAddedDate(Converters.convertToLocalDate(customer.getAddedDate()));
+    customerFX.setAddedDate(Converters.convertToLocalDateTime(customer.getAddedDate()));
     customerFX.setExternal_id(customer.getExternal_id());
     return customerFX;
 
@@ -127,8 +143,8 @@ public static CustomerFX convertToCustomerFX(Customer customer){
 public static OrderFX convertToOrderFX(Order order){
     OrderFX orderFX = new OrderFX();
     orderFX.setId(order.getId());
-    orderFX.setOrderDate(Converters.convertToLocalDate(order.getOrderDate()));
-    orderFX.setReturnDate(Converters.convertToLocalDate(order.getReturnDate()));
+    orderFX.setOrderDate(Converters.convertToLocalDateTime(order.getOrderDate()));
+    orderFX.setReturnDate(Converters.convertToLocalDateTime(order.getReturnDate()));
     orderFX.setFinalPrice(order.getFinalPrice());
     orderFX.setClientRfid(order.getClientRFID());
     return  orderFX;

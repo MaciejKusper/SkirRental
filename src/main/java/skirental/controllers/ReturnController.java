@@ -13,6 +13,7 @@ import skirental.utils.FxmlUtils;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.lang.Math.round;
@@ -158,9 +159,9 @@ public class ReturnController {
                 customerLabel.setText(customerModel.getCustomerStr().getName() +" "+ customerModel.getCustomerStr().getSurname()+" "+customerModel.getCustomerStr().getExternal_id());
             }
             if (orderModel.returnOrderFXObjectProperty.get().getOrderDate() != null) {
-                LocalDate orderDate = orderModel.returnOrderFXObjectProperty.get().getOrderDate();
-                LocalDate today = LocalDate.now();
-                duration = Duration.between(orderDate.atStartOfDay(), today.atStartOfDay()).toHours();
+                LocalDateTime orderDate = orderModel.returnOrderFXObjectProperty.get().getOrderDate();
+                LocalDateTime today = LocalDateTime.now();
+                duration = Duration.between(orderDate, today).toHours();
                 numberHourLabel.setText("" + duration);
             }
         }

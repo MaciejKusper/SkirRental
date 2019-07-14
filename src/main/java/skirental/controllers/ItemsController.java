@@ -47,7 +47,7 @@ public class ItemsController {
     }
 
     public void addItem() throws ApplicationException {
-        itemsModel.saveItemToDB(rfidText.getText(),null, typeText.getText(), Converters.convertToDouble(priceText.getText()),sizeText.getText(), Converters.convertToDate(serviceDate.getValue()) , descriptionTextArea.getText(),condition.getValue());
+        itemsModel.saveItemToDB(rfidText.getText(),null, typeText.getText(), Converters.convertToDouble(priceText.getText()),sizeText.getText(), Converters.convertToDatefromLocalDate(serviceDate.getValue()) , descriptionTextArea.getText(),condition.getValue());
         rfidText.clear();
         typeText.clear();
         priceText.clear();

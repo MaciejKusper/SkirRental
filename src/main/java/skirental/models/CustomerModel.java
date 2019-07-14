@@ -17,7 +17,6 @@ public class CustomerModel {
 
     private ObservableList<CustomerFX> customerFXObservableList = FXCollections.observableArrayList();
     private ObjectProperty<CustomerFX> customer = new SimpleObjectProperty<>();
-
     private ObjectProperty<CustomerFX> customerStr = new SimpleObjectProperty<>();
 
     public void saveCustomerToDB (String name, String surname, String addres, String external_id) throws ApplicationException {

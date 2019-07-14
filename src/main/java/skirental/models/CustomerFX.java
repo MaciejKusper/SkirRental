@@ -2,6 +2,7 @@ package skirental.models;
 import javafx.beans.property.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class CustomerFX {
 
@@ -10,7 +11,7 @@ public class CustomerFX {
     private StringProperty name = new SimpleStringProperty();
     private StringProperty surname = new SimpleStringProperty();
     private StringProperty addres = new SimpleStringProperty();
-    private SimpleObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<LocalDateTime> addedDate = new SimpleObjectProperty<>();
 
     public int getId() {
         return id.get();
@@ -72,15 +73,15 @@ public class CustomerFX {
         this.addres.set(addres);
     }
 
-    public LocalDate getAddedDate() {
+    public LocalDateTime getAddedDate() {
         return addedDate.get();
     }
 
-    public SimpleObjectProperty<LocalDate> addedDateProperty() {
+    public SimpleObjectProperty<LocalDateTime> addedDateProperty() {
         return addedDate;
     }
 
-    public void setAddedDate(LocalDate addedDate) {
+    public void setAddedDate(LocalDateTime addedDate) {
         this.addedDate.set(addedDate);
     }
 
