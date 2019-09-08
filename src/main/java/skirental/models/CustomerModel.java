@@ -24,7 +24,7 @@ public class CustomerModel {
         Customer customer = new Customer();
         customer.setName(name);
         customer.setSurname(surname);
-        customer.setAddres(addres);
+        customer.setAddress(addres);
         customer.setAddedDate(new Date());
         customer.setExternal_id(external_id);
         customerDao.creatOrUpdate(customer);

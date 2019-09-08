@@ -2,11 +2,8 @@ package skirental.utils;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
-import skirental.controllers.OrderController;
-import skirental.models.CustomerModel;
 
 import java.util.Optional;
 import java.util.ResourceBundle;

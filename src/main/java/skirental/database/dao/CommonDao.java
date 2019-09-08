@@ -4,7 +4,6 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.logger.Logger;
 import com.j256.ormlite.logger.LoggerFactory;
-import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.database.model.BaseModel;
@@ -33,23 +32,6 @@ public class CommonDao {
 
     }
 
-    public <T extends BaseModel, I> void refresh(BaseModel baseModel) throws ApplicationException {
-        try {
-            Dao<T, I> dao = getDao((Class<T>) baseModel.getClass());
-            dao.refresh((T) baseModel);
-        } catch (SQLException e) {
-            LOGGER.warn(e.getCause().getMessage());
-        }
-    }
-
-    public <T extends BaseModel, I> void delete(BaseModel baseModel) throws ApplicationException {
-        try {
-            Dao<T, I> dao = getDao((Class<T>) baseModel.getClass());
-            dao.delete((T) baseModel);
-        } catch (SQLException e) {
-            LOGGER.warn(e.getCause().getMessage());
-        }
-    }
     public <T extends BaseModel, I> void deleteByID(Class<T> cls , Integer id) throws ApplicationException {
         try {
             Dao<T, I> dao = getDao(cls);
@@ -99,11 +81,6 @@ public class CommonDao {
             LOGGER.warn(e.getCause().getMessage());
         }
         return null;
-    }
-
-    public <T extends BaseModel, I> QueryBuilder<T, I> getQueryBuilder(Class<T> cls) throws ApplicationException {
-        Dao<T, I> dao = getDao(cls);
-        return dao.queryBuilder();
     }
 
 }

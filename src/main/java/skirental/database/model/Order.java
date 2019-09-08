@@ -42,13 +42,6 @@ public class Order implements BaseModel {
         this.id = id;
     }
 
-    public ForeignCollection<Items> getItem() {
-        return item;
-    }
-
-    public void setItem(ForeignCollection<Items> item) {
-        this.item = item;
-    }
 
     public Date getOrderDate() {
         return orderDate;

@@ -6,7 +6,6 @@ import skirental.database.model.Order;
 import skirental.models.CustomerFX;
 import skirental.models.ItemsFX;
 import skirental.models.OrderFX;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -120,7 +119,7 @@ public static CustomerFX convertToCustomerFX(Customer customer){
     customerFX.setId(customer.getId());
     customerFX.setName(customer.getName());
     customerFX.setSurname(customer.getSurname());
-    customerFX.setAddres(customer.getAddres());
+    customerFX.setAddres(customer.getAddress());
     customerFX.setAddedDate(Converters.convertToLocalDateTime(customer.getAddedDate()));
     customerFX.setExternal_id(customer.getExternal_id());
     return customerFX;
@@ -133,7 +132,7 @@ public static CustomerFX convertToCustomerFX(Customer customer){
         customer.setId(customerFX.getId());
         customer.setName(customerFX.getName());
         customer.setSurname(customerFX.getSurname());
-        customer.setAddres(customerFX.getAddres());
+        customer.setAddress(customerFX.getAddres());
         customer.setAddedDate(Converters.convertToDate(customerFX.getAddedDate()));
         customer.setExternal_id(customerFX.getExternal_id());
         return customer;

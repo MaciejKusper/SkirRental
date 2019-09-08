@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import skirental.database.dbUtils.DatabaseManager;
-import skirental.simpleData.LoadSimpleData;
+//import skirental.simpleData.LoadSimpleData; //
 import skirental.utils.FxmlUtils;
 
 public class Main extends Application {
@@ -27,6 +27,6 @@ public class Main extends Application {
         primaryStage.setTitle(FxmlUtils.getResourceBundle().getString("tittle.application"));
         primaryStage.show();
         DatabaseManager.initDatabase();
-        LoadSimpleData.loadSimpleData();
+        //LoadSimpleData.loadSimpleData();
     }
 }

@@ -9,10 +9,7 @@ import skirental.models.ItemsModel;
 import skirental.models.OrderModel;
 import skirental.utils.Converters;
 import skirental.utils.DialogsUtils;
-import skirental.utils.FxmlUtils;
-
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -57,9 +54,6 @@ public class ReturnController {
 
     @FXML
     private Label orderSum;
-
-    @FXML
-    private Label orderDateLabel;
 
     @FXML
     private Label orderDate;
@@ -141,6 +135,7 @@ public class ReturnController {
         discountSlider.setValue(0);
         takeOrder.clear();
         customerLabel.setText("-");
+        numberHourLabel.setText("-");
     }
 
     @FXML

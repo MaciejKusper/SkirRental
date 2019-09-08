@@ -1,8 +1,6 @@
 package skirental.database.model;
 
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 
 import java.util.Date;
 
@@ -24,8 +22,8 @@ public class Customer implements BaseModel{
     @DatabaseField(columnName = "SURNAME", canBeNull = false)
     private String surname;
 
-    @DatabaseField(columnName = "ADDERS")
-    private String addres;
+    @DatabaseField(columnName = "ADDRESS")
+    private String address;
 
     @DatabaseField(columnName = "ADDED_DATE")
     private Date addedDate;
@@ -46,12 +44,12 @@ public class Customer implements BaseModel{
         this.surname = surname;
     }
 
-    public String getAddres() {
-        return addres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Date getAddedDate() {
@@ -85,7 +83,7 @@ public class Customer implements BaseModel{
                 ", external_id='" + external_id + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", addres='" + addres + '\'' +
+                ", address='" + address + '\'' +
                // ", addedDate=" + addedDate +
                 //", comments='" + comments + '\'' +
                 //", item=" + item +

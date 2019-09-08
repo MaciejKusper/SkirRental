@@ -1,9 +1,7 @@
 package skirental.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
 import org.omg.CORBA.portable.ApplicationException;
 import skirental.models.*;
 import skirental.utils.DialogsUtils;
@@ -74,10 +72,6 @@ public class OrderController {
         this.customerModel = new CustomerModel();
         this.itemsModel = new ItemsModel();
         this.orderModel = new OrderModel();
-       //this.itemsModel.takeItemsFromDB();
-        //this.customerModel.takeCustomerFromDB();
-       //this.orderModel.takeLastOrderFromDatabase();
-      // orderNumber.setText("" +this.orderModel.orderIdProperty.getValue());
         initBinding();
         this.selectCustomerComboBox.setItems(this.customerModel.getCustomerFXObservableList());
         this.orderTableView.setItems(this.itemsModel.getItemsFXObservableList());
